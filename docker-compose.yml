@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  scheduler:
+    build:
+      context: ./base
+      dockerfile: Dockerfile
+    image: daskdev/dask
+    hostname: dask-scheduler
+    ports:
+      - "8786:8786"
+
+  worker:
+    build:
+      context: ./base
+      dockerfile: Dockerfile
+    image: daskdev/dask
+    hostname: dask-worker
+    command: ["bash", "-c", "/usr/bin/prepare.sh && exec dask-worker scheduler:8786"]
+
+  notebook:
+    build:
+      context: .
+      dockerfile: notebook/Dockerfile
+    image: daskdev/base-notebook
+    hostname: notebook
+    ports:
+      - "8888:8888"
