@@ -1,10 +1,7 @@
 FROM jupyter/base-notebook
 
-RUN conda create -n dask --yes -c conda-forge \
-    dask distributed numpy scipy pandas numba nomkl fastparquet s3fs zict bcolz blosc cytoolz \
-    'notebook=5.0.*' \
-    'jupyterhub=0.7.*' \
-    'jupyterlab=0.24.*' \
+RUN conda install --yes -c conda-forge \
+    dask distributed numpy pandas numba nomkl fastparquet zict blosc cytoolz \
     && conda clean -tipsy
 ENV PATH=/opt/conda/envs/dask/bin:$PATH
 
