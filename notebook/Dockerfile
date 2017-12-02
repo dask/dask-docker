@@ -1,9 +1,10 @@
 FROM jupyter/base-notebook
 
 RUN conda install --yes -c conda-forge \
-    dask distributed numpy pandas numba nomkl fastparquet zict blosc cytoolz \
+    dask distributed numpy pandas numba nomkl fastparquet zict blosc \
+    cytoolz ipywidgets \
     && conda clean -tipsy
-ENV PATH=/opt/conda/envs/dask/bin:$PATH
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 USER root
 COPY ./base/prepare.sh /usr/bin/prepare.sh
