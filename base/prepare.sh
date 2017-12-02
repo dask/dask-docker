@@ -1,6 +1,5 @@
 #!/bin/bash
 
-set -e
 set -x
 
 if [ -e "/opt/app/environment.yml" ]; then
@@ -9,3 +8,16 @@ if [ -e "/opt/app/environment.yml" ]; then
 else
     echo "no environment.yml"
 fi
+
+if [ "$EXTRA_CONDA_PACKAGES" ]; then
+    echo "EXTRA_CONDA_PACKAGES environment variable found.  Installing."
+    /opt/conda/bin/conda install -n dask $EXTRA_CONDA_PACKAGES
+fi
+
+if [ "$EXTRA_PIP_PACKAGES" ]; then
+    echo "EXTRA_PIP_PACKAGES environment variable found.  Installing".
+    /opt/conda/envs/dask/bin/pip install $EXTRA_PIP_PACKAGES
+fi
+
+# Run extra commands
+$@

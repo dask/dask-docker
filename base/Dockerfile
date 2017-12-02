@@ -5,7 +5,7 @@ RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/
 RUN chmod +x /usr/local/bin/dumb-init
 
 RUN conda create -n dask --yes -c conda-forge \
-    dask distributed numpy scipy pandas numba nomkl fastparquet s3fs zict bcolz blosc cytoolz \
+    dask distributed numpy pandas numba nomkl fastparquet zict blosc cytoolz \
     && conda clean -tipsy
 ENV PATH=/opt/conda/envs/dask/bin:$PATH
 
@@ -14,5 +14,4 @@ RUN chmod +x /usr/bin/prepare.sh
 
 RUN mkdir /opt/app
 
-ENTRYPOINT ["/usr/local/bin/dumb-init", "--"]
-CMD ["bash", "-c", "/usr/bin/prepare.sh && exec dask-scheduler"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "bash", "/usr/bin/prepare.sh"]
