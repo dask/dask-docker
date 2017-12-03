@@ -7,7 +7,7 @@ RUN conda install --yes -c conda-forge \
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
 USER root
-COPY ./base/prepare.sh /usr/bin/prepare.sh
+COPY prepare.sh /usr/bin/prepare.sh
 RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /opt/app
 USER $NB_USER
