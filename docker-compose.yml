@@ -9,6 +9,8 @@ services:
     hostname: dask-scheduler
     ports:
       - "8786:8786"
+      - "8787:8787"
+    command: ["dask-scheduler"]
 
   worker:
     build:
@@ -16,13 +18,15 @@ services:
       dockerfile: Dockerfile
     image: daskdev/dask
     hostname: dask-worker
-    command: ["bash", "-c", "/usr/bin/prepare.sh && exec dask-worker scheduler:8786"]
+    ports:
+      - "8789:8789"
+    command: ["dask-worker scheduler:8786"]
 
   notebook:
     build:
-      context: .
-      dockerfile: notebook/Dockerfile
-    image: daskdev/base-notebook
+      context: ./notebook
+      dockerfile: Dockerfile
+    image: daskdev/dask-notebook
     hostname: notebook
     ports:
       - "8888:8888"
