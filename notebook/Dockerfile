@@ -12,4 +12,4 @@ RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /opt/app
 USER $NB_USER
 
-CMD ["bash", "-c", "/usr/bin/prepare.sh && start-notebook.sh"]
+CMD ["bash", "-c", "/usr/bin/prepare.sh && start.sh jupyter lab"]
