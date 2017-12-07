@@ -14,4 +14,6 @@ RUN chmod +x /usr/bin/prepare.sh
 
 RUN mkdir /opt/app
 
+RUN apt-get install git
+
 ENTRYPOINT ["/usr/local/bin/dumb-init", "bash", "/usr/bin/prepare.sh"]

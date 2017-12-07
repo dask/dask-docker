@@ -2,7 +2,7 @@ FROM jupyter/base-notebook
 
 RUN conda install --yes -c conda-forge \
     dask distributed numpy pandas numba nomkl fastparquet zict blosc \
-    cytoolz ipywidgets \
+    cytoolz ipywidgets git jupyterlab \
     && conda clean -tipsy
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
 
