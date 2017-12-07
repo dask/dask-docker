@@ -12,4 +12,5 @@ RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /opt/app
 USER $NB_USER
 
-CMD ["bash", "-c", "/usr/bin/prepare.sh && start.sh jupyter lab"]
+ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
+CMD ["start.sh jupyter lab"]
