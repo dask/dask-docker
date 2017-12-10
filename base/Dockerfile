@@ -5,7 +5,15 @@ RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/
 RUN chmod +x /usr/local/bin/dumb-init
 
 RUN conda create -n dask --yes -c conda-forge \
-    dask distributed numpy pandas numba nomkl fastparquet zict blosc cytoolz \
+    blosc \
+    cytoolz \
+    dask \
+    distributed \
+    fastparquet \
+    nomkl \
+    numpy \
+    pandas \
+    zict \
     && conda clean -tipsy
 ENV PATH=/opt/conda/envs/dask/bin:$PATH
 
@@ -16,4 +24,4 @@ RUN mkdir /opt/app
 
 RUN apt-get install git
 
-ENTRYPOINT ["/usr/local/bin/dumb-init", "bash", "/usr/bin/prepare.sh"]
+ENTRYPOINT ["/usr/local/bin/dumb-init", "/usr/bin/prepare.sh"]
