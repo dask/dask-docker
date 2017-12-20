@@ -18,8 +18,6 @@ services:
       dockerfile: Dockerfile
     image: daskdev/dask
     hostname: dask-worker
-    ports:
-      - "8789:8789"
     command: ["dask-worker scheduler:8786"]
 
   notebook:
