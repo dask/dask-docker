@@ -2,6 +2,12 @@
 
 set -x
 
+# We start by adding extra apt packages, since pip modules may required library
+if [ "$EXTRA_APT_PACKAGES" ]; then
+    echo "EXTRA_APT_PACKAGES environment variable found.  Installing."
+    apt install -y $EXTRA_APT_PACKAGES
+fi
+
 if [ -e "/opt/app/environment.yml" ]; then
     echo "environment.yml found. Installing packages"
     /opt/conda/bin/conda env update -n dask -f /opt/app/environment.yml
