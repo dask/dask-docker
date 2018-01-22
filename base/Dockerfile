@@ -24,4 +24,6 @@ RUN mkdir /opt/app
 
 RUN apt-get install git
 
+COPY conda.conf /etc/ld.so.conf.d/conda.conf
+
 ENTRYPOINT ["/usr/local/bin/dumb-init", "/usr/bin/prepare.sh"]

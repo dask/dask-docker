@@ -23,5 +23,7 @@ RUN chmod +x /usr/bin/prepare.sh
 RUN mkdir /opt/app
 USER $NB_USER
 
+COPY conda.conf /etc/ld.so.conf.d/conda.conf
+
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
 CMD ["start.sh jupyter lab"]
