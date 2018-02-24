@@ -8,16 +8,12 @@ RUN conda update conda && conda install "conda=4.4.7"
 RUN conda create -n dask --yes \
     python-blosc \
     cytoolz \
-    dask==0.17.0  \
-    distributed==1.21.0 \
+    dask==0.17.1  \
+    distributed==1.21.1 \
     nomkl \
-    numpy==1.14.0 \
+    numpy==1.14.1 \
     pandas==0.22.0 \
     && conda clean -tipsy
-
-RUN pip install git+https://github.com/dask/distributed.git@bc436e242884a1d4cf3a85ce6d5d378b5663122d \
-                --no-cache-dir \
-                --no-dependencies
 
 ENV PATH=/opt/conda/envs/dask/bin:$PATH
 
