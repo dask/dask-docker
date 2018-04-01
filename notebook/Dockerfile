@@ -11,10 +11,10 @@ RUN conda update conda && conda install "conda=4.4.7"
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==0.17.1  \
-    distributed==1.21.1 \
+    dask==0.17.2  \
+    distributed==1.21.4 \
     nomkl \
-    numpy==1.14.1 \
+    numpy==1.14.2 \
     pandas==0.22.0 \
     ipywidgets \
     jupyterlab \
