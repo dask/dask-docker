@@ -5,7 +5,7 @@ RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/
 RUN chmod +x /usr/local/bin/dumb-init
 
 RUN conda update conda && conda install "conda=4.4.7"
-RUN conda create -n dask --yes \
+RUN conda install --yes \
     python-blosc \
     cytoolz \
     dask==0.17.2  \
@@ -14,8 +14,6 @@ RUN conda create -n dask --yes \
     numpy==1.14.1 \
     pandas==0.22.0 \
     && conda clean -tipsy
-
-ENV PATH=/opt/conda/envs/dask/bin:$PATH
 
 COPY prepare.sh /usr/bin/prepare.sh
 RUN chmod +x /usr/bin/prepare.sh
