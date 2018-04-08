@@ -9,7 +9,7 @@ RUN conda install --yes \
     python-blosc \
     cytoolz \
     dask==0.17.2  \
-    distributed==1.21.4 \
+    distributed==1.21.6 \
     nomkl \
     numpy==1.14.2 \
     pandas==0.22.0 \
