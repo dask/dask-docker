@@ -8,8 +8,8 @@ RUN conda update conda && conda install "conda=4.4.7"
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==0.17.4  \
-    distributed==1.21.8 \
+    dask==0.18.1  \
+    distributed==1.22.0 \
     nomkl \
     numpy==1.14.2 \
     pandas==0.22.0 \
