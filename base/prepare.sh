@@ -26,4 +26,4 @@ if [ "$EXTRA_PIP_PACKAGES" ]; then
 fi
 
 # Run extra commands
-$@
+"$@"
