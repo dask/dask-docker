@@ -7,19 +7,19 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 USER $NB_USER
 
-RUN conda update conda && conda install "conda=4.4.7"
+RUN conda update conda 
 RUN conda install --yes \
+    -c defaults -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==0.18.1 \
-    distributed==1.22.0 \
+    dask==0.19.1 \
     nomkl \
-    numpy==1.14.2 \
-    pandas==0.22.0 \
+    numpy==1.15.1 \
+    pandas==0.23.4 \
     ipywidgets \
-    jupyterlab \
+    jupyterlab==0.34.7\
     && conda clean -tipsy
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension
 
 RUN pip install graphviz \
                 --no-cache-dir \
@@ -34,4 +34,4 @@ RUN chown -R $NB_USER /home/$NB_USER/examples
 USER $NB_USER
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
-CMD ["start.sh jupyter lab"]
+CMD ["start.sh", "jupyter", "lab"]

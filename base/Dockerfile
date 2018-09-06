@@ -1,18 +1,17 @@
-FROM continuumio/miniconda3:4.3.14
+FROM continuumio/miniconda3:4.5.4
 
 # Dumb init
 RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
 RUN chmod +x /usr/local/bin/dumb-init
 
-RUN conda update conda && conda install "conda=4.4.7"
+RUN conda update conda 
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==0.18.1  \
-    distributed==1.22.0 \
+    dask==0.19.1 \
     nomkl \
-    numpy==1.14.2 \
-    pandas==0.22.0 \
+    numpy==1.15.1 \
+    pandas==0.23.4 \
     && conda clean -tipsy
 
 COPY prepare.sh /usr/bin/prepare.sh

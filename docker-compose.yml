@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     image: daskdev/dask
     hostname: dask-worker
-    command: ["dask-worker scheduler:8786"]
+    command: ["dask-worker", "scheduler:8786"]
 
   notebook:
     build:
