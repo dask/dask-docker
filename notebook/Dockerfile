@@ -9,7 +9,6 @@ USER $NB_USER
 
 RUN conda update conda 
 RUN conda install --yes \
-    -c defaults -c conda-forge \
     python-blosc \
     cytoolz \
     dask==0.19.1 \
