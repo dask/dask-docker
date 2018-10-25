@@ -6,6 +6,7 @@ RUN chmod +x /usr/local/bin/dumb-init
 
 RUN conda update conda 
 RUN conda install --yes \
+    -c conda-forge \
     python-blosc \
     cytoolz \
     dask==0.19.4 \
