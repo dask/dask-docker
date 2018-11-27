@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
     image: daskdev/dask
     hostname: dask-worker
-    command: ["dask-worker", "scheduler:8786"]
+    command: ["dask-worker", "tcp://scheduler:8786"]
 
   notebook:
     build:
@@ -28,3 +28,5 @@ services:
     hostname: notebook
     ports:
       - "8888:8888"
+    environment:
+      - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"
