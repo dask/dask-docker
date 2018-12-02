@@ -11,12 +11,12 @@ RUN conda update conda
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==0.20.2 \
+    dask==1.0.0 \
     nomkl \
-    numpy==1.15.1 \
+    numpy==1.15.4 \
     pandas==0.23.4 \
     ipywidgets \
-    jupyterlab==0.35\
+    jupyterlab==0.35 \
     && conda clean -tipsy
 RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.2
 
