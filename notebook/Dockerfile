@@ -11,7 +11,7 @@ RUN conda update conda
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==1.1.1 \
+    dask==1.1.2 \
     nomkl \
     numpy==1.16.0 \
     pandas==0.24.0 \
