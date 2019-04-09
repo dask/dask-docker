@@ -8,10 +8,10 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==1.1.2 \
+    dask==1.1.5 \
     nomkl \
-    numpy==1.16.0 \
-    pandas==0.24.0 \
+    numpy==1.16.2 \
+    pandas==0.24.2 \
     && conda clean -tipsy
 
 COPY prepare.sh /usr/bin/prepare.sh

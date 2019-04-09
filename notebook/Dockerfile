@@ -11,14 +11,14 @@ RUN conda update conda
 RUN conda install --yes \
     python-blosc \
     cytoolz \
-    dask==1.1.2 \
+    dask==1.1.5 \
     nomkl \
-    numpy==1.16.0 \
-    pandas==0.24.0 \
+    numpy==1.16.2 \
+    pandas==0.24.2 \
     ipywidgets \
-    jupyterlab==0.35 \
+    jupyterlab==0.35.4 \
     && conda clean -tipsy
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.2
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.3
 
 RUN pip install graphviz \
                 --no-cache-dir \
