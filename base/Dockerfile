@@ -8,7 +8,7 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==1.1.5 \
+    dask==1.2.0 \
     nomkl \
     numpy==1.16.2 \
     pandas==0.24.2 \
