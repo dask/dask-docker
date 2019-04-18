@@ -19,7 +19,7 @@ RUN conda install --yes \
     jupyterlab==0.35.4 \
     && conda clean -tipsy
 
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.3.3
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.3
 
 RUN pip install graphviz \
                 --no-cache-dir \
