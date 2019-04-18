@@ -18,11 +18,13 @@ RUN conda install --yes \
     ipywidgets \
     jupyterlab==0.35.4 \
     && conda clean -tipsy
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.3
+
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@0.3.3
 
 RUN pip install graphviz \
                 --no-cache-dir \
                 --no-dependencies
+RUN pip install dask-labextension==0.3.3
 
 USER root
 COPY prepare.sh /usr/bin/prepare.sh
