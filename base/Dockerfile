@@ -12,10 +12,14 @@ RUN conda install --yes \
     nomkl \
     numpy==1.16.2 \
     pandas==0.24.2 \
-    && conda clean -tipsy
+    && conda update conda -y \
+    && conda clean -tipsy \
+    && find /opt/conda/ -type f,l -name '*.a' -delete \
+    && find /opt/conda/ -type f,l -name '*.pyc' -delete \
+    && find /opt/conda/ -type f,l -name '*.js.map' -delete \
+    && rm -rf /opt/conda/pkgs
 
 COPY prepare.sh /usr/bin/prepare.sh
-RUN chmod +x /usr/bin/prepare.sh
 
 RUN mkdir /opt/app
 
