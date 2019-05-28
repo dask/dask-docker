@@ -21,9 +21,13 @@ RUN conda install --yes --freeze-installed \
     && jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38.1 dask-labextension@0.3 \
     && pip install graphviz dask-labextension==0.3.3 --no-cache-dir --no-dependencies \
     && conda clean -tipsy \
+    && jupyter lab clean \
+    && jlpm cache clean \
+    && npm cache clean --force \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
+    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete \
     && rm -rf /opt/conda/pkgs
 
 USER root
