@@ -9,8 +9,7 @@ RUN apt-get update \
 
 USER $NB_USER
 
-RUN conda update conda  \
- && conda install --yes --freeze-installed \
+RUN conda install --yes --freeze-installed \
     -c conda-forge \
     python-blosc \
     cytoolz \
