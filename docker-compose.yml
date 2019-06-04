@@ -5,7 +5,7 @@ services:
     build:
       context: ./base
       dockerfile: Dockerfile
-    image: daskdev/dask
+    image: scuddalo/spraoi-dask
     hostname: dask-scheduler
     ports:
       - "8786:8786"
@@ -16,7 +16,7 @@ services:
     build:
       context: ./base
       dockerfile: Dockerfile
-    image: daskdev/dask
+    image: scuddalo/spraoi-dask
     hostname: dask-worker
     command: ["dask-worker", "tcp://scheduler:8786"]
 
@@ -24,7 +24,7 @@ services:
     build:
       context: ./notebook
       dockerfile: Dockerfile
-    image: daskdev/dask-notebook
+    image: scuddalo/spraoi-dask-notebook
     hostname: notebook
     ports:
       - "8888:8888"
