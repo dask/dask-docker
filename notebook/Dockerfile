@@ -19,6 +19,7 @@ RUN conda install --yes --freeze-installed \
     pandas==0.24.2 \
     ipywidgets \
     dask-labextension==1.0.0 \
+    python-graphviz \
     && jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0.1 dask-labextension@1.0.0 \
     && conda clean -tipsy \
     && jupyter lab clean \
