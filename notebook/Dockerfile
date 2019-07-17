@@ -13,13 +13,14 @@ RUN conda install --yes --freeze-installed \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==1.2.0 \
+    dask==2.0.0 \
     nomkl \
     numpy==1.16.2 \
     pandas==0.24.2 \
     ipywidgets \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager@0.38.1 dask-labextension@0.3 \
-    && pip install graphviz dask-labextension==0.3.3 --no-cache-dir --no-dependencies \
+    dask-labextension==1.0.0 \
+    python-graphviz \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0.1 dask-labextension@1.0.0 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
