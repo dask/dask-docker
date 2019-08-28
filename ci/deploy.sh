@@ -10,7 +10,7 @@ for IMAGE in $(cat docker-compose.yml | grep image: | awk '{ print $2 }'); do
 
     # If this is not a tagged commit push to the dev label
     if [ "$TRAVIS_TAG" = "" ]; then
-        DEV_IMAGE="$IMAGE:${TRAVIS_COMMIT:0:8}"
+        DEV_IMAGE="$IMAGE:dev"
         echo "Pushing $DEV_IMAGE"
         docker tag $IMAGE $DEV_IMAGE
         docker push $DEV_IMAGE
