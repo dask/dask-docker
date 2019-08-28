@@ -1,0 +1,19 @@
+language: generic
+
+services:
+  - docker
+
+script:
+  - docker-compose build
+
+deploy:
+  - provider: script
+    script: bash ci/deploy.sh
+    on:
+      branch: master
+
+  - provider: script
+    skip_cleanup: true
+    script: bash ci/deploy.sh
+    on:
+      tags: true
