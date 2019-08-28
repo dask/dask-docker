@@ -13,14 +13,14 @@ RUN conda install --yes --freeze-installed \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2.0.0 \
+    dask==2.3.0 \
     nomkl \
     numpy==1.16.2 \
     pandas==0.24.2 \
     ipywidgets \
-    dask-labextension==1.0.0 \
+    dask-labextension==1.0.3 \
     python-graphviz \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0.1 dask-labextension@1.0.0 \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0.1 dask-labextension@1.0.3 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
@@ -34,10 +34,10 @@ RUN conda install --yes --freeze-installed \
 USER root
 
 # Create the /opt/app directory, and assert that Jupyter's NB_UID/NB_GID values
-# haven't changed. 
+# haven't changed.
 RUN mkdir /opt/app \
     && if [ "$NB_UID" != "1000" ] || [ "$NB_GID" != "100" ]; then \
-        echo "Jupyter's NB_UID/NB_GID changed, need to update the Dockerfile"; \ 
+        echo "Jupyter's NB_UID/NB_GID changed, need to update the Dockerfile"; \
         exit 1; \
     fi
 
