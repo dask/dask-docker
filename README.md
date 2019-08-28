@@ -1,5 +1,7 @@
 # Dask docker images
 
+[![Build Status](https://travis-ci.com/dask/dask-docker.svg?branch=master)](https://travis-ci.com/dask/dask-docker)
+
 Docker images for dask-distributed.
 
 1. Base image to use for dask scheduler and workers
