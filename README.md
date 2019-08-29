@@ -47,7 +47,7 @@ docker-compose build notebook
 
 ## Releasing
 
-Releasing new image versions are done automatically via Travis CI. When new commits are
+Building and releasing new image versions is done automatically via Travis CI. When new commits are
 pushed to the master branch images are built with the `dev` tag and pushed to Docker Hub.
 
 When a new version of Dask is released a PR should be raised to bump the versions in
