@@ -4,10 +4,10 @@ RUN conda install --yes --freeze-installed \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2.3.0 \
+    dask==2.6.0 \
     nomkl \
-    numpy==1.16.2 \
-    pandas==0.24.2 \
+    numpy==1.17.2 \
+    pandas==0.25.2 \
     tini==0.18.0 \
     && conda clean -tipsy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
