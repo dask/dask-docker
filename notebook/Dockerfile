@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook
+FROM jupyter/base-notebook:lab-1.2.1
 
 USER root
 
@@ -9,19 +9,19 @@ RUN apt-get update \
 
 USER $NB_USER
 
-RUN conda install --yes --freeze-installed \
+RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2.6.0 \
+    dask==2.7.0 \
     lz4 \
     nomkl \
-    numpy==1.17.2 \
+    numpy==1.17.3 \
     pandas==0.25.2 \
     ipywidgets \
     dask-labextension==1.0.3 \
     python-graphviz \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager@1.0.1 dask-labextension@1.0.1 \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@1.0.1 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
