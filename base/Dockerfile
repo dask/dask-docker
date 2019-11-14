@@ -4,10 +4,10 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2.6.0 \
+    dask==2.7.0 \
     lz4 \
     nomkl \
-    numpy==1.17.2 \
+    numpy==1.17.3 \
     pandas==0.25.2 \
     tini==0.18.0 \
     && conda clean -tipsy \
