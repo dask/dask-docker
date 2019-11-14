@@ -1,6 +1,6 @@
-FROM continuumio/miniconda3:4.6.14
+FROM continuumio/miniconda3:4.7.12
 
-RUN conda install --yes --freeze-installed \
+RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
