@@ -22,7 +22,7 @@ jobs:
       with:
         include: "(base\/|notebook\/)"
         find: "dask==[0-9\.]+"
-        replace: "${{ steps.latest_tag.outputs.version }}"
+        replace: "dask==${{ steps.latest_tag.outputs.version }}"
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
