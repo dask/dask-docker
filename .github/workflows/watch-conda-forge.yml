@@ -21,8 +21,8 @@ jobs:
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
         include: "(base\/|notebook\/)"
-        find: "dask==[0-9\\.]+"
-        replace: "dask==${{ steps.latest_tag.outputs.version }}"
+        find: "dask==.* "
+        replace: "dask==${{ steps.latest_tag.outputs.version }} "
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
