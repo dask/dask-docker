@@ -2,7 +2,7 @@ name: Check for new versions of Dask on Conda Forge
 
 on:
   schedule:
-  - cron: "0 * * * *"
+  - cron: "*/5 * * * *"
 
 jobs:
   check-version:
@@ -17,10 +17,16 @@ jobs:
       with:
         org: 'conda-forge'
         package: 'dask'
-    - name: Find and Replace
+    - name: Find and Replace Base
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
         include: "base/"
+        find: "dask==.* "
+        replace: "dask==${{ steps.latest_tag.outputs.version }} "
+    - name: Find and Replace Notebook
+      uses: jacobtomlinson/gha-find-replace@0.1.1
+      with:
+        include: "notebook/"
         find: "dask==.* "
         replace: "dask==${{ steps.latest_tag.outputs.version }} "
     - name: Create Pull Request
