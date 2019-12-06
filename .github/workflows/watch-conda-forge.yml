@@ -22,23 +22,23 @@ jobs:
       with:
         include: "base/"
         find: "dask==.* "
-        replace: "dask==${{ steps.latest_tag.outputs.version }} "
+        replace: "dask==${{ steps.latest_version.outputs.version }} "
     - name: Find and Replace Notebook
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
         include: "notebook/"
         find: "dask==.* "
-        replace: "dask==${{ steps.latest_tag.outputs.version }} "
+        replace: "dask==${{ steps.latest_version.outputs.version }} "
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'Update Dask version to ${{ steps.latest_tag.outputs.version }}'
-        title: 'Update Dask version to ${{ steps.latest_tag.outputs.version }}'
+        commit-message: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
+        title: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
         reviewers: 'jacobtomlinson'
         branch: 'upgrade-dask-version'
         branch-suffix: 'none'
         body: |
           A new Dask version has been detected. 
           
-          Updated `Dockerfile`s to use `${{ steps.latest_tag.outputs.version }}`.
+          Updated `Dockerfile`s to use `${{ steps.latest_version.outputs.version }}`.
