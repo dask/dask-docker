@@ -20,7 +20,7 @@ jobs:
     - name: Find and Replace
       uses: jacobtomlinson/gha-find-replace@0.1.1
       with:
-        include: "(base\/|notebook\/)"
+        include: "base/"
         find: "dask==.* "
         replace: "dask==${{ steps.latest_tag.outputs.version }} "
     - name: Create Pull Request
