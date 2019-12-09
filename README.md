@@ -7,7 +7,7 @@ Docker images for dask-distributed.
 1. Base image to use for dask scheduler and workers
 2. Jupyter Notebook image to use as helper entrypoint
 
-This images are built primarily for the [dask-distributed Helm Chart](https://github.com/kubernetes/charts/tree/master/stable/dask-distributed)
+This images are built primarily for the [Dask Helm Chart](https://github.com/dask/helm-chart)
 but they should work for more use cases.
 
 ## How to use / test
