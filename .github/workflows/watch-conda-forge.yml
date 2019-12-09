@@ -2,7 +2,7 @@ name: Check for new versions of Dask on Conda Forge
 
 on:
   schedule:
-  - cron: "*/5 * * * *"
+  - cron: "0 * * * *"
 
 jobs:
   check-version:
