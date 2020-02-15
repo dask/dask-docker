@@ -7,8 +7,8 @@ RUN conda install --yes \
     dask==2.10.1 \
     lz4 \
     nomkl \
-    numpy==1.17.3 \
-    pandas==0.25.2 \
+    numpy==1.18.1 \
+    pandas==1.0.1 \
     tini==0.18.0 \
     && conda clean -tipsy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
