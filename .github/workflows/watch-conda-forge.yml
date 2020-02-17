@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Get latest Dask version
       id: latest_version
       uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
@@ -30,14 +30,13 @@ jobs:
         find: "dask==.* "
         replace: "dask==${{ steps.latest_version.outputs.version }} "
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v1
+      uses: peter-evans/create-pull-request@v2
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         commit-message: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
         title: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
         reviewers: 'jacobtomlinson'
         branch: 'upgrade-dask-version'
-        branch-suffix: 'none'
         body: |
           A new Dask version has been detected. 
           
