@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Get latest Dask version
       id: latest_version
       uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
@@ -37,7 +37,6 @@ jobs:
         title: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
         reviewers: 'jacobtomlinson'
         branch: 'upgrade-dask-version'
-        branch-suffix: 'none'
         body: |
           A new Dask version has been detected. 
           
