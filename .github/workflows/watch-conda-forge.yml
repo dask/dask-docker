@@ -2,42 +2,42 @@ name: Check for new versions of Dask on Conda Forge
 
 on:
   schedule:
-  - cron: "0 * * * *"
+    - cron: "0 * * * *"
 
 jobs:
   check-version:
-
     runs-on: ubuntu-latest
+    if: github.repository == 'dask/dask-docker'
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Get latest Dask version
-      id: latest_version
-      uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
-      with:
-        org: 'conda-forge'
-        package: 'dask'
-    - name: Find and Replace Base
-      uses: jacobtomlinson/gha-find-replace@0.1.1
-      with:
-        include: "base/"
-        find: "dask==.* "
-        replace: "dask==${{ steps.latest_version.outputs.version }} "
-    - name: Find and Replace Notebook
-      uses: jacobtomlinson/gha-find-replace@0.1.1
-      with:
-        include: "notebook/"
-        find: "dask==.* "
-        replace: "dask==${{ steps.latest_version.outputs.version }} "
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v2
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
-        title: 'Update Dask version to ${{ steps.latest_version.outputs.version }}'
-        reviewers: 'jacobtomlinson'
-        branch: 'upgrade-dask-version'
-        body: |
-          A new Dask version has been detected. 
-          
-          Updated `Dockerfile`s to use `${{ steps.latest_version.outputs.version }}`.
+      - uses: actions/checkout@v2
+      - name: Get latest Dask version
+        id: latest_version
+        uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
+        with:
+          org: "conda-forge"
+          package: "dask"
+      - name: Find and Replace Base
+        uses: jacobtomlinson/gha-find-replace@0.1.1
+        with:
+          include: "base/"
+          find: "dask==.* "
+          replace: "dask==${{ steps.latest_version.outputs.version }} "
+      - name: Find and Replace Notebook
+        uses: jacobtomlinson/gha-find-replace@0.1.1
+        with:
+          include: "notebook/"
+          find: "dask==.* "
+          replace: "dask==${{ steps.latest_version.outputs.version }} "
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update Dask version to ${{ steps.latest_version.outputs.version }}"
+          title: "Update Dask version to ${{ steps.latest_version.outputs.version }}"
+          reviewers: "jacobtomlinson"
+          branch: "upgrade-dask-version"
+          body: |
+            A new Dask version has been detected.
+
+            Updated `Dockerfile`s to use `${{ steps.latest_version.outputs.version }}`.
