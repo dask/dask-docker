@@ -1,3 +1,4 @@
+ARG PYTHON_VERSION=3.8
 FROM jupyter/base-notebook:lab-1.2.1
 
 USER root
@@ -11,7 +12,6 @@ USER $NB_USER
 
 RUN conda install --yes \
     -c conda-forge \
-    python==3.8 \
     python-blosc \
     cytoolz \
     dask==2.12.0 \
