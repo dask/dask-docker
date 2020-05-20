@@ -6,7 +6,7 @@ set -e
 echo "$DOCKER_PASSWORD" | docker login --username "$DOCKER_USERNAME" --password-stdin
 
 # Iterate through built images and tag and push appropriately
-for IMAGE in $(cat docker-compose.yml | grep image: | awk '{ print $2 }'); do
+for IMAGE in $(cat docker-compose.yml | grep 'image: daskdev' | awk '{ print $2 }'); do
 
     # If this is not a tagged commit push to the dev label
     if [ "$TRAVIS_TAG" = "" ]; then
