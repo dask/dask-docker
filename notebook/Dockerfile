@@ -1,11 +1,11 @@
-FROM jupyter/base-notebook:lab-1.2.1
+FROM jupyter/base-notebook:lab
 
 USER root
 
 RUN apt-get update \
-  && apt-get install -yq --no-install-recommends graphviz git \
-  && apt-get clean \
-  && rm -rf /var/lib/apt/lists/*
+    && apt-get install -yq --no-install-recommends graphviz git \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 USER $NB_USER
 
@@ -19,9 +19,9 @@ RUN conda install --yes \
     numpy==1.18.1 \
     pandas==1.0.1 \
     ipywidgets \
-    dask-labextension==1.0.3 \
+    dask-labextension==2.0.2 \
     python-graphviz \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@1.0.1 \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@2.0.2 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
@@ -38,8 +38,8 @@ USER root
 # haven't changed.
 RUN mkdir /opt/app \
     && if [ "$NB_UID" != "1000" ] || [ "$NB_GID" != "100" ]; then \
-        echo "Jupyter's NB_UID/NB_GID changed, need to update the Dockerfile"; \
-        exit 1; \
+    echo "Jupyter's NB_UID/NB_GID changed, need to update the Dockerfile"; \
+    exit 1; \
     fi
 
 # Copy over the example as NB_USER. Unfortuantely we can't use $NB_UID/$NB_GID
