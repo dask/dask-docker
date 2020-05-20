@@ -19,9 +19,9 @@ RUN conda install --yes \
     numpy==1.18.1 \
     pandas==1.0.1 \
     ipywidgets \
-    dask-labextension==1.0.3 \
+    dask-labextension==2.0.2 \
     python-graphviz \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@1.0.1 \
+    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@2.0.2 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
