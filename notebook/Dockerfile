@@ -13,7 +13,7 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2.17.0 \
+    dask==2.17.1 \
     lz4 \
     nomkl \
     numpy==1.18.1 \
