@@ -26,5 +26,10 @@ if [ "$EXTRA_PIP_PACKAGES" ]; then
     /opt/conda/bin/pip install $EXTRA_PIP_PACKAGES
 fi
 
+if [ "$EXTRA_VIRTUAL_ENV" ]; then
+    echo "EXTRA_VIRTUAL_ENV environment variable found.  Activating virtual environment."
+    source activate $EXTRA_VIRTUAL_ENV
+fi
+
 # Run extra commands
 exec "$@"
