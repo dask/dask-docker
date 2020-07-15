@@ -19,9 +19,10 @@ RUN conda install --yes \
     && rm -rf /opt/conda/pkgs
 
 COPY prepare.sh /usr/bin/prepare.sh
+COPY install-deps.sh /usr/bin/install-deps.sh
 
 RUN mkdir /opt/app
 
-RUN bash install-deps.sh
+RUN bash /usr/bin/install-deps.sh
 
 ENTRYPOINT ["tini", "-g", "--", "/usr/bin/prepare.sh"]
