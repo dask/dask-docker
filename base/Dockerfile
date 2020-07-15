@@ -22,4 +22,6 @@ COPY prepare.sh /usr/bin/prepare.sh
 
 RUN mkdir /opt/app
 
+RUN bash install-deps.sh
+
 ENTRYPOINT ["tini", "-g", "--", "/usr/bin/prepare.sh"]
