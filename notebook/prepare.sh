@@ -26,5 +26,8 @@ if [ "$EXTRA_PIP_PACKAGES" ]; then
     /opt/conda/bin/pip install $EXTRA_PIP_PACKAGES
 fi
 
+# Start jupyter here instead of Dockerfile so that ^^^ is executed as root
+su - $NB_USER && start.sh jupyter lab
+
 # Run extra commands
 exec "$@"

@@ -48,6 +48,3 @@ COPY --chown=1000:100 examples/ /home/$NB_USER/examples
 COPY prepare.sh /usr/bin/prepare.sh
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
-
-USER $NB_USER
-CMD ["start.sh", "jupyter", "lab"]
