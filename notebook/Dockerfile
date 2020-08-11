@@ -47,7 +47,4 @@ RUN mkdir /opt/app \
 COPY --chown=1000:100 examples/ /home/$NB_USER/examples
 COPY prepare.sh /usr/bin/prepare.sh
 
-USER $NB_USER
-
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
-CMD ["start.sh", "jupyter", "lab"]
