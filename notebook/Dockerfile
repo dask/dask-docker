@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:lab
+FROM jupyter/base-notebook:lab-2.2.5
 
 USER root
 
