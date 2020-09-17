@@ -34,6 +34,19 @@ It should output something like this:
 {'tcp://172.23.0.4:41269': 4}
 ```
 
+## Environment Variables
+
+The following environment variables are supported for both the base and notebook images:
+
+* `$EXTRA_APT_PACKAGES` - Space separated list of additional system packages to install with apt.
+* `$EXTRA_CONDA_PACKAGES` - Space separated list of additional packages to install with conda.
+* `$EXTRA_PIP_PACKAGES` - Space separated list of additional python packages to install with pip.
+
+The notebook image supports the following additional environment variables:
+
+* `$JUPYTERLAB_ARGS` - Extra [arguments](https://jupyter-notebook.readthedocs.io/en/stable/config.html) to pass to the `jupyter lab` command.
+
+
 ## Building images
 
 Docker compose provides an easy way to building all the images with the right context
