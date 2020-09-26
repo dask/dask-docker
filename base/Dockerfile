@@ -5,7 +5,7 @@ RUN conda install --yes \
     python==3.8 \
     python-blosc \
     cytoolz \
-    dask==2.27.0 \
+    dask==2.28.0 \
     lz4 \
     nomkl \
     numpy==1.18.1 \
