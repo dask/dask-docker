@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook:lab-3.0.5
+FROM jupyter/base-notebook:latest
+4, change the notebook container to be compatible with the default jupyterhub)
 
 USER root
 
@@ -13,28 +14,37 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -
     chmod +x /usr/local/bin/kubectl && \
     kubectl version --client
 
+RUN touch /hello_holden
+
 USER $NB_USER
 
-RUN conda install --yes \
-    -c conda-forge \
+RUN conda install -c conda-forge --yes mamba
+RUN mamba install --yes python==3.8.6
+RUN (mamba install --yes aiohttp==3.7.1 || pip install aiohttp==3.7.1 )
+RUN mamba install --yes \
     python-blosc \
     cytoolz \
     dask==2021.7.0 \
     lz4 \
-    nomkl \
     numpy==1.21.1 \
-    pandas==1.3.0 \
     ipywidgets \
     dask-labextension>=5 \
-    python-graphviz \
-    && conda clean -tipsy \
+    python-graphviz && \
+    mamba install --yes s3fs gcsfs dropboxdrivefs requests dropbox paramiko adlfs pygit2 pyarrow && \
+    mamba install --yes bokeh numba llvmlite
+RUN (mamba install --yes fastparquet || pip install fastparquet)
+RUN (mamba install --yes jupyter-server-proxy || pip install jupyter-server-proxy)
+RUN (mamba install --yes dask-labextension || pip install dask-labextension)
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension @jupyterlab/server-proxy \
+    && jupyter serverextension enable dask-labextension @jupyterlab/server-proxy \
+    && pip install dask-kubernetes==2021.3.1 \
     && jupyter lab clean \
     && jlpm cache clean \
     && npm cache clean --force \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
-    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete \
+    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete || echo "no bokeh static files to cleanup" \
     && rm -rf /opt/conda/pkgs
 
 USER root
