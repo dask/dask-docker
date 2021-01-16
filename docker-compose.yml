@@ -6,6 +6,8 @@ services:
       context: ./base
       dockerfile: Dockerfile
     image: daskdev/dask
+    environment:
+      - EXTRA_PIP_PACKAGES=git+https://github.com/dask/dask.git
     hostname: dask-scheduler
     ports:
       - "8786:8786"
@@ -17,6 +19,8 @@ services:
       context: ./base
       dockerfile: Dockerfile
     image: daskdev/dask
+    environment:
+      - EXTRA_PIP_PACKAGES=git+https://github.com/dask/dask.git
     hostname: dask-worker
     command: ["dask-worker", "tcp://scheduler:8786"]
 
@@ -27,6 +31,8 @@ services:
       args:
         PYTHON_VERSION: "3.8"
     image: jupyter/base-notebook:lab
+    environment:
+      - EXTRA_PIP_PACKAGES=git+https://github.com/dask/dask.git
 
   notebook:
     build:
@@ -40,3 +46,4 @@ services:
       - "8888:8888"
     environment:
       - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"
+      - EXTRA_PIP_PACKAGES=git+https://github.com/dask/dask.git
