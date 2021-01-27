@@ -1,6 +1,6 @@
 # Dask docker images
 
-[![Build Status](https://travis-ci.com/dask/dask-docker.svg?branch=master)](https://travis-ci.com/dask/dask-docker)
+[![Build Status](https://travis-ci.com/dask/dask-docker.svg?branch=main)](https://travis-ci.com/dask/dask-docker)
 
 Docker images for dask-distributed.
 
@@ -48,7 +48,7 @@ docker-compose build notebook
 ## Releasing
 
 Building and releasing new image versions is done automatically via Travis CI. When new commits are
-pushed to the master branch images are built with the `dev` tag and pushed to Docker Hub.
+pushed to the ``main`` branch images are built with the `dev` tag and pushed to Docker Hub.
 
 When a new version of Dask is released a PR should be raised to bump the versions in
 the `Dockerfile`s and then once that has been merged a new tag matching the Dask version
@@ -58,5 +58,5 @@ should be pushed. Travis will then build the images and push them with version t
 ```console
 $ git commit --allow-empty -a -m "bump version to x.x.x"
 $ git tag -a x.x.x -m 'Version x.x.x'
-$ git push upstream master --tags
+$ git push upstream main --tags
 ```
