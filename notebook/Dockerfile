@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:lab-2.2.5
+FROM jupyter/base-notebook:lab-3.0.5
 
 USER root
 
@@ -19,9 +19,8 @@ RUN conda install --yes \
     numpy==1.18.1 \
     pandas==1.0.1 \
     ipywidgets \
-    dask-labextension==3.0.0 \
+    dask-labextension>=5 \
     python-graphviz \
-    && jupyter labextension install @jupyter-widgets/jupyterlab-manager dask-labextension@3.0.0 \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
