@@ -56,7 +56,7 @@ should be pushed. Travis will then build the images and push them with version t
 `latest` too.
 
 ```console
-$ git commit --allow-empty -a -m "bump version to x.x.x"
+$ git commit --allow-empty -m "bump version to x.x.x"
 $ git tag -a x.x.x -m 'Version x.x.x'
 $ git push upstream main --tags
 ```
