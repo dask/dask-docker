@@ -42,7 +42,11 @@ jobs:
           image: ${{ matrix.image.tag }}
           python: ${{ matrix.python }}
         run: |
-          echo "::set-output name=tags::${image}:${release}-${python}"
+          tags="${image}:${release}-${python}"
+          if [ "$python" = "$defaultpython" ]; then
+            tags=${image}:${latest},${image}:${release},$tags
+          fi
+          echo "::set-output name=tags::${tags}"
 
       - name: Build and push
         uses: docker/build-push-action@v2
