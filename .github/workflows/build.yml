@@ -44,7 +44,7 @@ jobs:
         run: |
           tags="${image}:${release}-${python}"
           if [ "$python" = "$defaultpython" ]; then
-            tags=${image}:${latest},${image}:${release},$tags
+            tags=${image}:latest,${image}:${release},$tags
           fi
           echo "::set-output name=tags::${tags}"
 
