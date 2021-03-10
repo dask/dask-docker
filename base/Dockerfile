@@ -1,6 +1,6 @@
 FROM continuumio/miniconda3:latest
 
-ARG python
+ARG python=3.8
 ARG release
 
 RUN conda install --yes \

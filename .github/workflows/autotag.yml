@@ -1,0 +1,14 @@
+name: Auto Tag
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jaliborc/action-general-autotag@1.0.0
+        with:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          source_file: ".github/workflows/build.yml"
+          extraction_regex: \s*"release"\s*:\s*"([\d\.]+)"\s*
