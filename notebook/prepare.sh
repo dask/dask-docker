@@ -2,15 +2,17 @@
 
 set -x
 
-# We start by adding extra apt packages, since pip modules may required library
-if [ "$EXTRA_APT_PACKAGES" ]; then
-    echo "EXTRA_APT_PACKAGES environment variable found.  Installing."
-    apt update -y
-    apt install -y $EXTRA_APT_PACKAGES
+if [ $UID -eq 0 ]; then
+    # We start by adding extra apt packages, since pip modules may require system dependencies
+    if [ "$EXTRA_APT_PACKAGES" ]; then
+        echo "EXTRA_APT_PACKAGES environment variable found.  Installing."
+        apt update -y
+        apt install -y $EXTRA_APT_PACKAGES
+    fi
+    # Start the script over again, this time as a non-root user.
+    exec sudo -E --user "$NB_USER" PATH="$PATH" "$0" -- "$@"
+    exit # Don't continue execution if the exec fails.
 fi
-
-# Switch user so only ^^^ is executed as root
-su - $NB_USER
 
 if [ -e "/opt/app/environment.yml" ]; then
     echo "environment.yml found. Installing packages"
@@ -29,7 +31,6 @@ if [ "$EXTRA_PIP_PACKAGES" ]; then
     /opt/conda/bin/pip install $EXTRA_PIP_PACKAGES
 fi
 
-start.sh jupyter lab
 
-# Run extra commands
-exec "$@"
+exec start.sh jupyter lab ${JUPYTERLAB_ARGS}
+
