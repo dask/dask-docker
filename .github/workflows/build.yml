@@ -1,9 +1,6 @@
 name: ci
 
-on:
-  push:
-    branches:
-      - "main"
+on: [pull_request, push]
 
 jobs:
   docker:
