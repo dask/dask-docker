@@ -1,5 +1,7 @@
 FROM jupyter/base-notebook:lab-3.0.5
 
+ARG release
+
 USER root
 
 RUN apt-get update \
@@ -19,7 +21,7 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2021.3.0 \
+    dask==$release \
     lz4 \
     nomkl \
     numpy==1.18.1 \
