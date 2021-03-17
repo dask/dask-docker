@@ -62,6 +62,7 @@ jobs:
         with:
           context: ./docker-stacks/base-notebook
           push: false
+          load: true
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: jupyter/base-notebook:lab
           build-args: |
