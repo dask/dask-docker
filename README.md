@@ -65,3 +65,4 @@ Building and releasing new image versions is done automatically.
 - When a new Dask version is released the `watch-conda-forge` action will trigger and open a PR to update the latest release version in this repo.
 - If images build successfully that PR will be automatically merged by the `automerge` action.
 - When a PR like this is merged which updates the pinned release version a tag is automatically created to match that version by the `autotag` action.
+- When tags are created a new image is built and pushed using the `docker/build-push-action` action.
