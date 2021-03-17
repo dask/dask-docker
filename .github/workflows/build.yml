@@ -48,11 +48,19 @@ jobs:
           fi
           echo "::set-output name=tags::${tags}"
 
+      - name: Checkout upstream
+        uses: actions/checkout@v2
+        if: matrix.image.tag == 'daskdev/notebook'
+        with:
+          repository: jupyter/docker-stacks
+          ref: master
+          path: docker-stacks
+
       - name: Build upstream Jupyter Lab image
         uses: docker/build-push-action@v2
         if: matrix.image.tag == 'daskdev/notebook'
         with:
-          context: github.com/jupyter/docker-stacks.git#master:base-notebook
+          context: ./docker-stacks/base-notebook
           push: false
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: jupyter/base-notebook:lab
