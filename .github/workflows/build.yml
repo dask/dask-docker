@@ -48,6 +48,17 @@ jobs:
           fi
           echo "::set-output name=tags::${tags}"
 
+      - name: Build upstream Jupyter Lab image
+        uses: docker/build-push-action@v2
+        if: matrix.image.tag == 'daskdev/notebook'
+        with:
+          context: github.com/jupyter/docker-stacks.git#master:base-notebook
+          push: false
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
+          tags: jupyter/base-notebook:lab
+          build-args: |
+            python_version=${{ matrix.python }}
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
