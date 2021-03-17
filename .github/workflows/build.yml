@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        python: ["3.7", "3.8"]
+        python: ["3.7", "3.8", "3.9"]
         image:
           - tag: "daskdev/dask"
             context: "./base"
