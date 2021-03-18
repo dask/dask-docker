@@ -1,4 +1,4 @@
-FROM jupyter/base-notebook:lab
+FROM jupyter/base-notebook:lab-3.0.11
 
 ARG release
 
