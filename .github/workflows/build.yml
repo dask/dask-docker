@@ -64,7 +64,7 @@ jobs:
           push: false
           load: true
           platforms: linux/amd64
-          tags: jupyter/base-notebook:lab
+          tags: docker.io/jupyter/base-notebook:lab
           build-args: |
             python_version=${{ matrix.python }}
 
