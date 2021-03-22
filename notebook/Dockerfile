@@ -1,4 +1,6 @@
-FROM jupyter/base-notebook:lab-3.0.5
+FROM jupyter/base-notebook:lab
+
+ARG release
 
 USER root
 
@@ -19,7 +21,7 @@ RUN conda install --yes \
     -c conda-forge \
     python-blosc \
     cytoolz \
-    dask==2021.3.0 \
+    dask==$release \
     lz4 \
     nomkl \
     numpy==1.18.1 \

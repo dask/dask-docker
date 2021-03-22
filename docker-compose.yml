@@ -5,6 +5,8 @@ services:
     build:
       context: ./base
       dockerfile: Dockerfile
+      args:
+        release: "2021.3.0"
     image: daskdev/dask
     hostname: dask-scheduler
     ports:
@@ -32,6 +34,8 @@ services:
     build:
       context: ./notebook
       dockerfile: Dockerfile
+      args:
+        release: "2021.3.0"
     image: daskdev/dask-notebook
     depends_on:
       - base-notebook

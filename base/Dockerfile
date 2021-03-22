@@ -1,11 +1,14 @@
-FROM continuumio/miniconda3:4.8.2
+FROM continuumio/miniconda3:latest
+
+ARG python=3.8
+ARG release
 
 RUN conda install --yes \
     -c conda-forge \
-    python==3.8 \
+    python==$python \
     python-blosc \
     cytoolz \
-    dask==2021.3.0 \
+    dask==$release \
     lz4 \
     nomkl \
     numpy==1.18.1 \
