@@ -1,5 +1,4 @@
-FROM jupyter/base-notebook:latest
-4, change the notebook container to be compatible with the default jupyterhub)
+FROM  holdenk/jupyter-hub-magicsingleuser-sample:0.10.2-n412.h25a21283
 
 USER root
 
@@ -20,7 +19,7 @@ USER $NB_USER
 
 RUN conda install -c conda-forge --yes mamba
 RUN mamba install --yes python==3.8.6
-RUN (mamba install --yes aiohttp==3.7.1 || pip install aiohttp==3.7.1 )
+RUN (mamba install --yes 'aiohttp>=3.7.1' || pip install 'aiohttp>=3.7.1' )
 RUN mamba install --yes \
     python-blosc \
     cytoolz \
