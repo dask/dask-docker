@@ -40,3 +40,5 @@ services:
       - "8888:8888"
     environment:
       - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"
+    volumes:
+      - ./notebook/work:/home/jovyan/work
