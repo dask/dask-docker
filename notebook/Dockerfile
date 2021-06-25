@@ -17,16 +17,21 @@ USER $NB_USER
 
 RUN conda install --yes \
     -c conda-forge \
-    python-blosc \
+    python-blosc==1.9.2 \
     cytoolz \
-    dask==2021.6.1 \
-    lz4 \
+    dask==2021.6.2 \
+    lz4==3.1.1 \
+    msgpack-python==1.0.0 \
     nomkl \
     numpy==1.18.1 \
     pandas==1.0.1 \
     ipywidgets \
     dask-labextension>=5 \
     python-graphviz \
+    joblib \
+    scikit-learn \
+    dask-ml \
+    matplotlib \
     && conda clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
