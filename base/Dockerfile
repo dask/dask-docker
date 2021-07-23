@@ -1,8 +1,12 @@
-FROM  holdenk/miniforge:v0.3
+FROM condaforge/miniforge3:latest
 
 SHELL ["/bin/bash", "-c"]
 
 ENV PATH /opt/conda/bin:$PATH
+
+RUN conda install --yes nomkl cytoolz cmake tini
+RUN conda install --yes mamba
+
 
 RUN apt-get update --force-yes  -y --fix-missing && \
     apt-get install --force-yes  -y wget bzip2 ca-certificates libglib2.0-0 libxext6 libsm6 libxrender1 git mercurial subversion && \
