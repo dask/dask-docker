@@ -15,6 +15,7 @@ but they should work for more use cases.
 A helper docker-compose file is provided to test functionality.
 
 ```
+export DOCKER_BUILDKIT=1
 docker-compose up
 ```
 
@@ -32,6 +33,14 @@ It should output something like this:
 
 ```
 {'tcp://172.23.0.4:41269': 4}
+```
+
+### Cross building
+
+The images can be cross-built using docker buidlx, e.g.
+
+```
+cd notebook && docker buildx build -t holdenk/dask-notebook-minimal-changes . --platform linux/arm64,linux/amd64 --push
 ```
 
 ## Environment Variables
