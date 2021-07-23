@@ -1,4 +1,4 @@
-FROM condaforge/miniforge3:latest
+FROM condaforge/miniforge3:4.10.3-2
 
 SHELL ["/bin/bash", "-c"]
 

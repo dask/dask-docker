@@ -37,7 +37,7 @@ It should output something like this:
 
 ### Cross building
 
-The images can be cross-built using docker buidlx, e.g.
+The images can be cross-built using docker buildx, e.g.
 
 ```
 cd notebook && docker buildx build -t holdenk/dask-notebook-minimal-changes . --platform linux/arm64,linux/amd64 --push

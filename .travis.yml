@@ -4,7 +4,7 @@ services:
   - docker
 
 script:
-  - docker-compose build
+  - export DOCKER_BUILDKIT=1 && docker-compose build
 
 deploy:
   - provider: script
