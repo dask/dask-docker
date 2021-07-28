@@ -15,7 +15,6 @@ but they should work for more use cases.
 A helper docker-compose file is provided to test functionality.
 
 ```
-export DOCKER_BUILDKIT=1
 docker-compose up
 ```
 
@@ -40,7 +39,11 @@ It should output something like this:
 The images can be cross-built using docker buildx, e.g.
 
 ```
-cd notebook && docker buildx build -t holdenk/dask-notebook-minimal-changes . --platform linux/arm64,linux/amd64 --push
+# If you have permission to push to daskdev/
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push
+# If you don't
+export DOCKERUSER=holdenk
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask --push
 ```
 
 ## Environment Variables
