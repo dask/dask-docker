@@ -45,7 +45,7 @@ docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --p
 # If you don'tset DOCKERUSER to your dockerhub username.
 export DOCKERUSER=holdenk
 docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set base-notebook.tags.image=${DOCKERUSER}/base-notebook:lab-py38 --push base-notebook
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask-notebook --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
 ```
 
 ## Environment Variables
