@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook:python-3.9.6
+ARG base
+FROM $base/base-notebook:lab-py38
 
 USER root
 

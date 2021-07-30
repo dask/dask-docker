@@ -36,14 +36,16 @@ It should output something like this:
 
 ### Cross building
 
-The images can be cross-built using docker buildx, e.g.
+The images can be cross-built using docker buildx bake. However buildx bake does not listen to `depends_on` (since in theory that is only a runtime not a build time constraint https://github.com/docker/buildx/issues/447). To work around this we first need to build the "base-notebook" image.
 
 ```
 # If you have permission to push to daskdev/
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push base-notebook
 docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push
-# If you don't
+# If you don'tset DOCKERUSER to your dockerhub username.
 export DOCKERUSER=holdenk
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask --push
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set base-notebook.tags.image=${DOCKERUSER}/base-notebook:lab-py38 --push base-notebook
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
 ```
 
 ## Environment Variables
