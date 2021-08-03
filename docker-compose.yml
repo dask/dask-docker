@@ -18,6 +18,7 @@ services:
 
   notebook:
     image: daskdev/dask-notebook:latest
+    command: ["start.sh", "jupyter", "lab"]
     ports:
       - "8888:8888"
     environment:
