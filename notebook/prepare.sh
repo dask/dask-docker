@@ -32,4 +32,5 @@ if [ "$EXTRA_PIP_PACKAGES" ]; then
 fi
 
 
-exec start.sh jupyter lab ${JUPYTERLAB_ARGS}
+# Execute the jupyterlab as specified.
+exec ${JUPYTERLAB_ARGS}

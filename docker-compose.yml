@@ -36,6 +36,7 @@ services:
         base: daskdev
     depends_on:
       - base-notebook
+    command: ["start.sh", "jupyter", "lab"]
     image: daskdev/dask-notebook
     hostname: notebook
     ports:
