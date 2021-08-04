@@ -18,8 +18,8 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 
 USER $NB_USER
 
-RUN conda install -c conda-forge --yes mamba \
-    && mamba install --yes python==3.8.6 nomkl \
+RUN conda install mamba -n base -c conda-forge --yes
+RUN mamba install --yes python==3.8.6 nomkl \
     && mamba install --yes \
     python-blosc \
     cytoolz \
@@ -36,7 +36,7 @@ RUN conda install -c conda-forge --yes mamba \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
-    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete || echo "no bokeh static files to cleanup" \
+    && (find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete || echo "no bokeh static files to cleanup") \
     && rm -rf /opt/conda/pkgs
 
 USER root
