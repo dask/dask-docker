@@ -17,7 +17,7 @@ services:
       context: github.com/jupyter/docker-stacks.git#master:base-notebook
       dockerfile: Dockerfile
       args:
-        PYTHON_VERSION: "3.8"
+        PYTHON_VERSION: "3.8.6"
     image: daskdev/base-notebook:lab-py38
 
   worker:
