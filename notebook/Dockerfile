@@ -1,4 +1,5 @@
-FROM jupyter/base-notebook:lab-3.0.5
+ARG base
+FROM $base/base-notebook:lab-py38
 
 USER root
 
@@ -7,7 +8,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" && \
+# We don't use TARGETARCH so as to support non-buildkit builds
+RUN MAGICARCH=$(dpkg --print-architecture) && \
+    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/${MAGICARCH}/kubectl" && \
     mkdir -p /usr/local/bin && \
     mv ./kubectl /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl && \
@@ -15,26 +18,25 @@ RUN curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -
 
 USER $NB_USER
 
-RUN conda install --yes \
-    -c conda-forge \
+RUN conda install mamba -n base -c conda-forge --yes
+RUN mamba install --yes python==3.8.6 nomkl \
+    && mamba install --yes \
     python-blosc \
     cytoolz \
     dask==2021.7.2 \
     lz4 \
-    nomkl \
     numpy==1.21.1 \
     pandas==1.3.0 \
     ipywidgets \
     dask-labextension>=5 \
-    python-graphviz \
-    && conda clean -tipsy \
+    && mamba clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
     && npm cache clean --force \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
-    && find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete \
+    && (find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete || echo "no bokeh static files to cleanup") \
     && rm -rf /opt/conda/pkgs
 
 USER root

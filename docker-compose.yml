@@ -12,6 +12,14 @@ services:
       - "8787:8787"
     command: ["dask-scheduler"]
 
+  base-notebook:
+    build:
+      context: github.com/jupyter/docker-stacks.git#master:base-notebook
+      dockerfile: Dockerfile
+      args:
+        PYTHON_VERSION: "3.8.6"
+    image: daskdev/base-notebook:lab-py38
+
   worker:
     build:
       context: ./base
@@ -20,21 +28,15 @@ services:
     hostname: dask-worker
     command: ["dask-worker", "tcp://scheduler:8786"]
 
-  base-notebook:
-    build:
-      context: github.com/jupyter/docker-stacks.git#master:base-notebook
-      dockerfile: Dockerfile
-      args:
-        PYTHON_VERSION: "3.8"
-    image: jupyter/base-notebook:lab
-
   notebook:
     build:
       context: ./notebook
       dockerfile: Dockerfile
-    image: daskdev/dask-notebook
+      args:
+        base: daskdev
     depends_on:
       - base-notebook
+    image: daskdev/dask-notebook
     hostname: notebook
     ports:
       - "8888:8888"

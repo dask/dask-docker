@@ -1,17 +1,20 @@
-FROM continuumio/miniconda3:4.8.2
+FROM condaforge/miniforge3:4.10.3-2
 
-RUN conda install --yes \
-    -c conda-forge \
-    python==3.8 \
-    python-blosc \
+SHELL ["/bin/bash", "-c"]
+
+ENV PATH /opt/conda/bin:$PATH
+
+RUN conda install --yes nomkl cytoolz cmake \
+    && conda install --yes mamba \
+    && mamba install --yes python==3.8.6 \
+    && mamba install --yes \
     cytoolz \
     dask==2021.7.2 \
     lz4 \
-    nomkl \
     numpy==1.21.1 \
     pandas==1.3.0 \
     tini==0.18.0 \
-    && conda clean -tipsy \
+    && mamba clean -tipsy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
