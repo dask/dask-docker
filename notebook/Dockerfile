@@ -26,7 +26,7 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 USER $NB_USER
 
 RUN conda install mamba -n base -c conda-forge --yes
-RUN mamba install --yes python==${PYTHON_VERSION} nomkl \
+RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
     && mamba install --yes \
     python-blosc \
     cytoolz \
