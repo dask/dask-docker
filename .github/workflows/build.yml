@@ -68,6 +68,9 @@ jobs:
           build-args: |
             python_version=${{ matrix.python }}
 
+      - name: List images
+        run: docker images
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
