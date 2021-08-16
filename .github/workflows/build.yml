@@ -66,7 +66,7 @@ jobs:
           context: ./docker-stacks/base-notebook
           push: false
           load: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: daskdev/base-notebook:lab
           build-args: |
             PYTHON_VERSION=${{ matrix.python }}
@@ -76,7 +76,7 @@ jobs:
         with:
           context: ${{ matrix.image.context }}
           push: ${{ github.repository == 'dask/dask-docker' && github.event_name == 'push' && startsWith(github.ref, 'refs/tags') }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: ${{ steps.tags.outputs.tags }}
           build-args: |
             python=${{ matrix.python }}
