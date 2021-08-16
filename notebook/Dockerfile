@@ -1,6 +1,6 @@
 ARG release
 ARG base
-ARG python=3.8
+ARG python
 
 FROM $base/base-notebook:lab
 
