@@ -23,7 +23,7 @@ RUN mamba install --yes python==3.8.6 nomkl \
     && mamba install --yes \
     python-blosc \
     cytoolz \
-    dask==2021.7.2 \
+    dask==2021.8.0 \
     lz4 \
     numpy==1.21.1 \
     pandas==1.3.0 \
