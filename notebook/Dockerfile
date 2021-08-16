@@ -1,5 +1,6 @@
 ARG release
 ARG base
+
 FROM $base/base-notebook:lab-py38
 
 USER root
