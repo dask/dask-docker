@@ -20,7 +20,7 @@ services:
       dockerfile: Dockerfile
       args:
         PYTHON_VERSION: "3.8.6"
-    image: daskdev/base-notebook:lab-py38
+    image: daskdev/base-notebook:lab
 
   worker:
     build:
