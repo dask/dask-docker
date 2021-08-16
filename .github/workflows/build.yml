@@ -11,6 +11,7 @@ jobs:
       defaultpython: "3.8"
 
     strategy:
+      fail-fast: false
       matrix:
         python: ["3.7", "3.8", "3.9"]
         image:
