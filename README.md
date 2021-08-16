@@ -74,16 +74,9 @@ docker-compose build notebook
 
 ## Releasing
 
-Building and releasing new image versions is done automatically via Travis CI. When new commits are
-pushed to the ``main`` branch images are built with the `dev` tag and pushed to Docker Hub.
+Building and releasing new image versions is done automatically.
 
-When a new version of Dask is released a PR should be raised to bump the versions in
-the `Dockerfile`s and then once that has been merged a new tag matching the Dask version
-should be pushed. Travis will then build the images and push them with version tags and update
-`latest` too.
-
-```console
-$ git commit --allow-empty -m "bump version to x.x.x"
-$ git tag -a x.x.x -m 'Version x.x.x'
-$ git push upstream main --tags
-```
+- When a new Dask version is released the `watch-conda-forge` action will trigger and open a PR to update the latest release version in this repo.
+- If images build successfully that PR will be automatically merged by the `automerge` action.
+- When a PR like this is merged which updates the pinned release version a tag is automatically created to match that version by the `autotag` action.
+- When tags are created a new image is built and pushed using the `docker/build-push-action` action.

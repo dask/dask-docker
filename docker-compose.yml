@@ -5,6 +5,8 @@ services:
     build:
       context: ./base
       dockerfile: Dockerfile
+      args:
+        release: "2021.8.0"
     image: daskdev/dask
     hostname: dask-scheduler
     ports:
@@ -17,8 +19,8 @@ services:
       context: github.com/jupyter/docker-stacks.git#master:base-notebook
       dockerfile: Dockerfile
       args:
-        PYTHON_VERSION: "3.8.6"
-    image: daskdev/base-notebook:lab-py38
+        python: "3.8"
+    image: daskdev/base-notebook:lab
 
   worker:
     build:
@@ -34,6 +36,7 @@ services:
       dockerfile: Dockerfile
       args:
         base: daskdev
+        python: "3.8"
     depends_on:
       - base-notebook
     image: daskdev/dask-notebook

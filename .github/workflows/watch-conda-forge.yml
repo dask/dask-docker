@@ -11,24 +11,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+
       - name: Get latest Dask version
         id: latest_version
         uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
         with:
           org: "conda-forge"
           package: "dask"
-      - name: Find and Replace Base
+
+      - name: Find and Replace Release
         uses: jacobtomlinson/gha-find-replace@0.1.1
         with:
-          include: "base/"
-          find: "dask==.* "
-          replace: "dask==${{ steps.latest_version.outputs.version }} "
-      - name: Find and Replace Notebook
-        uses: jacobtomlinson/gha-find-replace@0.1.1
-        with:
-          include: "notebook/"
-          find: "dask==.* "
-          replace: "dask==${{ steps.latest_version.outputs.version }} "
+          include: '\.github\/workflows\/build\.yml|docker-compose\.yml'
+          find: "release: .*"
+          replace: 'release: "${{ steps.latest_version.outputs.version }}"'
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
         with:
@@ -36,6 +33,7 @@ jobs:
           commit-message: "Update Dask version to ${{ steps.latest_version.outputs.version }}"
           title: "Update Dask version to ${{ steps.latest_version.outputs.version }}"
           reviewers: "jacobtomlinson"
+          labels: "automerge"
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
           branch: "upgrade-dask-version"
           body: |

@@ -1,15 +1,20 @@
 FROM condaforge/miniforge3:4.10.3-2
 
+ARG python=3.8
+ARG release
+
 SHELL ["/bin/bash", "-c"]
 
 ENV PATH /opt/conda/bin:$PATH
+ENV PYTHON_VERSION=${python}
+ENV DASK_VERSION=${release}
 
 RUN conda install --yes nomkl cytoolz cmake \
     && conda install --yes mamba \
-    && mamba install --yes python==3.8.6 \
-    && mamba install --yes \
+    && mamba install --yes -c conda-forge \
+    python==${PYTHON_VERSION} \
     cytoolz \
-    dask==2021.8.0 \
+    dask==${DASK_VERSION} \
     lz4 \
     numpy==1.21.1 \
     pandas==1.3.0 \
