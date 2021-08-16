@@ -68,7 +68,7 @@ jobs:
           platforms: linux/amd64
           tags: daskdev/base-notebook:lab
           build-args: |
-            PYTHON_VERSION=${{ matrix.python }}
+            python=${{ matrix.python }}
 
       - name: List images
         run: docker images

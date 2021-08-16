@@ -1,5 +1,6 @@
 ARG release
 ARG base
+ARG python
 
 FROM $base/base-notebook:lab
 
@@ -21,7 +22,7 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 USER $NB_USER
 
 RUN conda install mamba -n base -c conda-forge --yes
-RUN mamba install --yes python==3.8.6 nomkl \
+RUN mamba install --yes python==$python nomkl \
     && mamba install --yes \
     python-blosc \
     cytoolz \
