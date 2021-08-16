@@ -1,8 +1,9 @@
-ARG release
 ARG base
-ARG python
 
 FROM $base/base-notebook:lab
+
+ARG release
+ARG python
 
 USER root
 
