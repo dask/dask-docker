@@ -1,10 +1,13 @@
 ARG release
 ARG base
-ARG python
+ARG python=3.8
 
 FROM $base/base-notebook:lab
 
 USER root
+
+ENV PYTHON_VERSION=${python}
+ENV DASK_VERSION=${release}
 
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends curl graphviz git \
@@ -22,11 +25,11 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 USER $NB_USER
 
 RUN conda install mamba -n base -c conda-forge --yes
-RUN mamba install --yes python==$python nomkl \
+RUN mamba install --yes python==${PYTHON_VERSION} nomkl \
     && mamba install --yes \
     python-blosc \
     cytoolz \
-    dask==$release \
+    dask==${DASK_VERSION} \
     lz4 \
     numpy==1.21.1 \
     pandas==1.3.0 \

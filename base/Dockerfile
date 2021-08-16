@@ -6,13 +6,15 @@ ARG release
 SHELL ["/bin/bash", "-c"]
 
 ENV PATH /opt/conda/bin:$PATH
+ENV PYTHON_VERSION=${python}
+ENV DASK_VERSION=${release}
 
 RUN conda install --yes nomkl cytoolz cmake \
     && conda install --yes mamba \
-    && mamba install --yes python==3.8.6 \
+    && mamba install --yes python==${PYTHON_VERSION} \
     && mamba install --yes \
     cytoolz \
-    dask==$release \
+    dask==${DASK_VERSION} \
     lz4 \
     numpy==1.21.1 \
     pandas==1.3.0 \
