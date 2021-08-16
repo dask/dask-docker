@@ -83,6 +83,7 @@ jobs:
           tags: ${{ steps.tags.outputs.tags }}
           build-args: |
             python=${{ matrix.python }}
+            PYTHON_VERSION=${{ matrix.python }}
             release=${{ env.release }}
             base=daskdev
 
