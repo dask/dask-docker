@@ -11,4 +11,4 @@ jobs:
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           source_file: ".github/workflows/build.yml"
-          extraction_regex: \s*"release"\s*:\s*"([\d\.]+)"\s*
+          extraction_regex: '\s*"release"\s*:\s*"([\d\.]+)"\s*'
