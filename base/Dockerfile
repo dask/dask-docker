@@ -13,7 +13,7 @@ RUN conda install --yes nomkl cytoolz cmake \
     && conda install --yes mamba \
     && mamba install --yes -c conda-forge \
     python=${PYTHON_VERSION} \
-    blosc \
+    python-blosc \
     cytoolz \
     dask==${DASK_VERSION} \
     lz4 \
