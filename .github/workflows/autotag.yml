@@ -1,14 +1,19 @@
 name: Auto Tag
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: jaliborc/action-general-autotag@1.0.0
+      - uses: butlerlogic/action-autotag@1.1.2
+        if: github.repository == 'dask/dask-docker'
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          source_file: ".github/workflows/build.yml"
-          extraction_regex: \s*"release"\s*:\s*"([\d\.]+)"\s*
+          strategy: regex
+          root: ".github/workflows/build.yml"
+          regex_pattern: '\s*release\s*:\s*"([\d\.]+)"\s*'
