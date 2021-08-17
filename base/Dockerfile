@@ -12,7 +12,8 @@ ENV DASK_VERSION=${release}
 RUN conda install --yes nomkl cytoolz cmake \
     && conda install --yes mamba \
     && mamba install --yes -c conda-forge \
-    python==${PYTHON_VERSION} \
+    python=${PYTHON_VERSION} \
+    blosc \
     cytoolz \
     dask==${DASK_VERSION} \
     lz4 \
