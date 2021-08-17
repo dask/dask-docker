@@ -33,4 +33,4 @@ fi
 
 
 # Execute the jupyterlab as specified.
-exec ${JUPYTERLAB_ARGS}
+exec start.sh jupyter lab ${JUPYTERLAB_ARGS}
