@@ -1,20 +1,16 @@
-# Dask docker images
+# Dask docker images [![Docker build](https://github.com/dask/dask-docker/actions/workflows/build.yml/badge.svg)](https://github.com/dask/dask-docker/actions/workflows/build.yml)
 
-[![Build Status](https://travis-ci.com/dask/dask-docker.svg?branch=main)](https://travis-ci.com/dask/dask-docker)
+| Image  | Description | Versions |
+| ------------- | ------------- | ------------- |
+| `daskdev/dask`  | Base image to use for Dask scheduler and workers  |   [![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0--py3.9-blue)](https://hub.docker.com/r/daskdev/dask/tags)  |
+| `daskdev/notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![](https://img.shields.io/badge/daskdev%2Fnotebook-2021.8.0--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fnotebook-2021.8.0-blue) ![](https://img.shields.io/badge/daskdev%2Fnotebook-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fnotebook-2021.8.0--py3.9-blue)](https://hub.docker.com/r/daskdev/notebook/tags) |
 
-Docker images for dask-distributed.
 
-1. Base image to use for dask scheduler and workers
-2. Jupyter Notebook image to use as helper entrypoint
+## Example
 
-This images are built primarily for the [Dask Helm Chart](https://github.com/dask/helm-chart)
-but they should work for more use cases.
+An example `docker-compose.yml` file is included for starting a small cluster.
 
-## How to use / test
-
-A helper docker-compose file is provided to test functionality.
-
-```
+```bash
 docker-compose up
 ```
 
@@ -24,28 +20,14 @@ On a new notebook run:
 
 ```python
 from dask.distributed import Client
-client = Client('scheduler:8786')
+client = Client()  # The address is automatically set by the DASK_SCHEDULER_ADDRESS environment variable
 client.ncores()
 ```
 
 It should output something like this:
 
-```
+```python
 {'tcp://172.23.0.4:41269': 4}
-```
-
-### Cross building
-
-The images can be cross-built using docker buildx bake. However buildx bake does not listen to `depends_on` (since in theory that is only a runtime not a build time constraint https://github.com/docker/buildx/issues/447). To work around this we first need to build the "base-notebook" image.
-
-```
-# If you have permission to push to daskdev/
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push base-notebook
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push
-# If you don'tset DOCKERUSER to your dockerhub username.
-export DOCKERUSER=holdenk
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set base-notebook.tags.image=${DOCKERUSER}/base-notebook:lab-py38 --push base-notebook
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask-notebook --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
 ```
 
 ## Environment Variables
@@ -65,11 +47,30 @@ The notebook image supports the following additional environment variables:
 
 Docker compose provides an easy way to building all the images with the right context
 
-```
+```bash
+cd build
+
 docker-compose build
 
 # Just build one image e.g. notebook
 docker-compose build notebook
+```
+
+### Cross building
+
+The images can be cross-built using `docker buildx bake`. However buildx bake does not listen to `depends_on` (since in theory that is only a runtime not a build time constraint https://github.com/docker/buildx/issues/447). To work around this we first need to build the "base-notebook" image.
+
+```bash
+cd build
+
+# If you have permission to push to daskdev/
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push base-notebook
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push
+
+# If you don'tset DOCKERUSER to your dockerhub username.
+export DOCKERUSER=holdenk
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set base-notebook.tags.image=${DOCKERUSER}/base-notebook:lab-py38 --push base-notebook
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask-notebook --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
 ```
 
 ## Releasing
