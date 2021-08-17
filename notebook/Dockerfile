@@ -35,6 +35,8 @@ RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
     numpy==1.21.1 \
     pandas==1.3.0 \
     ipywidgets \
+    cachey \
+    streamz \
     dask-labextension>=5 \
     && mamba clean -tipsy \
     && jupyter lab clean \
