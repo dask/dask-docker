@@ -1,6 +1,4 @@
-# Dask docker images
-
-[![Docker build](https://github.com/dask/dask-docker/actions/workflows/build.yml/badge.svg)](https://github.com/dask/dask-docker/actions/workflows/build.yml)
+# Dask docker images [![Docker build](https://github.com/dask/dask-docker/actions/workflows/build.yml/badge.svg)](https://github.com/dask/dask-docker/actions/workflows/build.yml)
 
 | Image  | Description | Versions |
 | ------------- | ------------- | ------------- |
