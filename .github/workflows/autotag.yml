@@ -1,6 +1,9 @@
 name: Auto Tag
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -8,6 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: butlerlogic/action-autotag@1.1.2
+        if: github.repository == 'dask/dask-docker'
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           strategy: regex
