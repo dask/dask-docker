@@ -1,0 +1,47 @@
+version: "3.1"
+
+services:
+  scheduler:
+    build:
+      context: ../base
+      dockerfile: Dockerfile
+      args:
+        release: "2021.8.0"
+    image: daskdev/dask
+    hostname: dask-scheduler
+    ports:
+      - "8786:8786"
+      - "8787:8787"
+    command: ["dask-scheduler"]
+
+  base-notebook:
+    build:
+      context: github.com/jupyter/docker-stacks.git#master:base-notebook
+      dockerfile: Dockerfile
+      args:
+        python: "3.8"
+    image: daskdev/base-notebook:lab
+
+  worker:
+    build:
+      context: ../base
+      dockerfile: Dockerfile
+    image: daskdev/dask
+    hostname: dask-worker
+    command: ["dask-worker", "tcp://scheduler:8786"]
+
+  notebook:
+    build:
+      context: ../notebook
+      dockerfile: Dockerfile
+      args:
+        base: daskdev
+        python: "3.8"
+    depends_on:
+      - base-notebook
+    image: daskdev/dask-notebook
+    hostname: notebook
+    ports:
+      - "8888:8888"
+    environment:
+      - DASK_SCHEDULER_ADDRESS="tcp://scheduler:8786"

@@ -2,45 +2,22 @@ version: "3.1"
 
 services:
   scheduler:
-    build:
-      context: ./base
-      dockerfile: Dockerfile
-      args:
-        release: "2021.8.0"
-    image: daskdev/dask
-    hostname: dask-scheduler
+    image: daskdev/dask:latest
+    hostname: scheduler
     ports:
       - "8786:8786"
       - "8787:8787"
     command: ["dask-scheduler"]
 
-  base-notebook:
-    build:
-      context: github.com/jupyter/docker-stacks.git#master:base-notebook
-      dockerfile: Dockerfile
-      args:
-        python: "3.8"
-    image: daskdev/base-notebook:lab
-
   worker:
-    build:
-      context: ./base
-      dockerfile: Dockerfile
-    image: daskdev/dask
-    hostname: dask-worker
+    image: daskdev/dask:latest
     command: ["dask-worker", "tcp://scheduler:8786"]
+    # For Docker swarm you can specify multiple workers, this is ignored by `docker-compose up`
+    deploy:
+      replicas: 2
 
   notebook:
-    build:
-      context: ./notebook
-      dockerfile: Dockerfile
-      args:
-        base: daskdev
-        python: "3.8"
-    depends_on:
-      - base-notebook
-    image: daskdev/dask-notebook
-    hostname: notebook
+    image: daskdev/dask-notebook:latest
     ports:
       - "8888:8888"
     environment:
