@@ -12,4 +12,4 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           strategy: regex
           root: ".github/workflows/build.yml"
-          regex_pattern: "\s*release\s*:\s*"([\d\.]+)"\s*"
+          regex_pattern: '\s*release\s*:\s*"([\d\.]+)"\s*'
