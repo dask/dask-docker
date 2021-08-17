@@ -20,6 +20,8 @@ RUN conda install --yes nomkl cytoolz cmake \
     numpy==1.21.1 \
     pandas==1.3.0 \
     tini==0.18.0 \
+    cachey \
+    streamz \
     && mamba clean -tipsy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
