@@ -1,9 +1,11 @@
-# Dask docker images [![Docker build](https://github.com/dask/dask-docker/actions/workflows/build.yml/badge.svg)](https://github.com/dask/dask-docker/actions/workflows/build.yml)
+# Dask docker images
+
+[![Docker build](https://github.com/dask/dask-docker/actions/workflows/build.yml/badge.svg)](https://github.com/dask/dask-docker/actions/workflows/build.yml)
 
 | Image  | Description | Versions |
 | ------------- | ------------- | ------------- |
-| `daskdev/dask`  | Base image to use for Dask scheduler and workers  |   [![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.0--py3.9-blue)](https://hub.docker.com/r/daskdev/dask/tags)  |
-| `daskdev/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.0--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.0-blue) ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.0--py3.9-blue)](https://hub.docker.com/r/daskdev/dask-notebook/tags) |
+| `daskdev/dask`  | Base image to use for Dask scheduler and workers  |   [![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.1--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.1-blue) ![](https://img.shields.io/badge/daskdev%2Fdask-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fdask-2021.8.1--py3.9-blue)](https://hub.docker.com/r/daskdev/dask/tags)  |
+| `daskdev/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.1--py3.8-blue) ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.1-blue) ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-latest-blue) <br /> ![](https://img.shields.io/badge/daskdev%2Fdask--notebook-2021.8.1--py3.9-blue)](https://hub.docker.com/r/daskdev/dask-notebook/tags) |
 
 
 ## Example
