@@ -3,6 +3,9 @@ name: Check for new versions of Dask on Conda Forge
 on:
   # TODO: Remove before merging
   pull_request:
+  push:
+    branches:
+      - '**'
   schedule:
     - cron: "0 * * * *"
 
