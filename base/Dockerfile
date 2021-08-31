@@ -1,4 +1,5 @@
-FROM condaforge/miniforge3:4.10.3-2
+ARG BASE_CONTAINER=condaforge/miniforge3:4.10.3-2
+FROM $BASE_CONTAINER
 
 ARG python=3.8
 ARG release
