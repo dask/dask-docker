@@ -6,7 +6,7 @@ services:
       context: ../base
       dockerfile: Dockerfile
       args:
-        release: "2021.8.1"
+        release: "2021.9.0"
     image: daskdev/dask:latest
     hostname: dask-scheduler
     ports:
