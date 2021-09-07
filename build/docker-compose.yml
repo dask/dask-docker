@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
       args:
         python: "3.8"
-        release: "2021.8.1"
+        release: "2021.9.0"
     image: daskdev/dask:latest
     hostname: dask-worker
     command: ["dask-worker", "tcp://scheduler:8786"]
@@ -40,7 +40,7 @@ services:
       args:
         base: daskdev
         python: "3.8"
-        release: "2021.8.1"
+        release: "2021.9.0"
     depends_on:
       - base-notebook
     image: daskdev/dask-notebook:latest
