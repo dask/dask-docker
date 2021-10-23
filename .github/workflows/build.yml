@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      release: "2021.9.1"
+      release: "2021.10.0"
       defaultpython: "3.8"
 
     strategy:
