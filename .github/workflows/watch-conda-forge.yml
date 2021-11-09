@@ -22,7 +22,7 @@ jobs:
       - name: Find and Replace Release
         uses: jacobtomlinson/gha-find-replace@0.1.1
         with:
-          include: '\.github\/workflows\/build\.yml|build\/docker-compose\.yml'
+          include: 'README\.md|\.github\/workflows\/build\.yml|build\/docker-compose\.yml'
           find: "release: .*"
           replace: 'release: "${{ steps.latest_version.outputs.version }}"'
 
