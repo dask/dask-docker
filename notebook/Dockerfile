@@ -38,6 +38,7 @@ RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
     cachey \
     streamz \
     dask-labextension>=5 \
+    && pip install dask-kubernetes \
     && mamba clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
