@@ -33,4 +33,4 @@ fi
 
 
 # Execute the jupyterlab as specified.
-exec start.sh jupyter lab ${JUPYTERLAB_ARGS}
+exec start.sh jupyter lab --NotebookApp.base_url="${NB_PREFIX:-/}" ${JUPYTERLAB_ARGS}
