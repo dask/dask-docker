@@ -10,10 +10,8 @@ ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
-RUN conda install --yes nomkl cytoolz cmake \
-    && conda install --yes mamba \
+RUN conda install --yes -c conda-forge nomkl cytoolz cmake mamba python=${PYTHON_VERSION} \
     && mamba install --yes -c conda-forge \
-    python=${PYTHON_VERSION} \
     python-blosc \
     cytoolz \
     dask==${DASK_VERSION} \
