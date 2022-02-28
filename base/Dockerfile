@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=condaforge/miniforge3:4.10.3-2
+ARG BASE_CONTAINER=condaforge/miniforge3:4.11.0-4
 FROM $BASE_CONTAINER
 
 ARG python=3.8
@@ -10,10 +10,8 @@ ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
-RUN conda install --yes nomkl cytoolz cmake \
-    && conda install --yes mamba \
+RUN conda install --yes -c conda-forge nomkl cytoolz cmake mamba python=${PYTHON_VERSION} \
     && mamba install --yes -c conda-forge \
-    python=${PYTHON_VERSION} \
     python-blosc \
     cytoolz \
     dask==${DASK_VERSION} \
