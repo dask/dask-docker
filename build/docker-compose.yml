@@ -43,7 +43,7 @@ services:
         release: "2022.2.1"
     depends_on:
       - base-notebook
-    image: ghcr.io/dask/dask/dask-notebook:latest
+    image: ghcr.io/dask/dask-notebook:latest
     hostname: notebook
     ports:
       - "8888:8888"
