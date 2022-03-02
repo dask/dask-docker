@@ -17,7 +17,7 @@ services:
       replicas: 2
 
   notebook:
-    image: ghcr.io/dask/dask/dask-notebook:latest
+    image: ghcr.io/dask/dask-notebook:latest
     ports:
       - "8888:8888"
     environment:
