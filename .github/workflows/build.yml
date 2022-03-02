@@ -17,7 +17,11 @@ jobs:
         image:
           - tag: "daskdev/dask"
             context: "./base"
+          - tag: "ghcr.io/dask/dask"
+            context: "./base"
           - tag: "daskdev/dask-notebook"
+            context: "./notebook"
+          - tag: "ghcr.io/dask/dask-notebook"
             context: "./notebook"
 
     steps:
@@ -53,7 +57,7 @@ jobs:
 
       - name: Checkout upstream Jupyter Lab image repo
         uses: actions/checkout@v2
-        if: matrix.image.tag == 'daskdev/dask-notebook'
+        if: contains(matrix.image.tag, 'dask-notebook')
         with:
           repository: jupyter/docker-stacks
           ref: master
@@ -61,7 +65,7 @@ jobs:
 
       - name: Build upstream Jupyter Lab image
         uses: docker/build-push-action@v2
-        if: matrix.image.tag == 'daskdev/dask-notebook'
+        if: contains(matrix.image.tag, 'dask-notebook')
         with:
           context: ./docker-stacks/base-notebook
           push: false

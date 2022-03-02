@@ -2,7 +2,7 @@ version: "3.1"
 
 services:
   scheduler:
-    image: daskdev/dask:latest
+    image: ghcr.io/dask:latest
     hostname: scheduler
     ports:
       - "8786:8786"
@@ -10,14 +10,14 @@ services:
     command: ["dask-scheduler"]
 
   worker:
-    image: daskdev/dask:latest
+    image: ghcr.io/dask:latest
     command: ["dask-worker", "tcp://scheduler:8786"]
     # For Docker swarm you can specify multiple workers, this is ignored by `docker-compose up`
     deploy:
       replicas: 2
 
   notebook:
-    image: daskdev/dask-notebook:latest
+    image: ghcr.io/dask-notebook:latest
     ports:
       - "8888:8888"
     environment:
