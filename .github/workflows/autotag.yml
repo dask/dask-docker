@@ -13,7 +13,7 @@ jobs:
       - uses: butlerlogic/action-autotag@stable
         if: github.repository == 'dask/dask-docker'
         with:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.DASK_BOT_TOKEN }}"
           strategy: regex
           regex_pattern: '\s*\[?.*release\]?: "?.*(\d{4}\.\d{1,2}\.\d+).*"?'
           root: ".github/workflows/build.yml"
