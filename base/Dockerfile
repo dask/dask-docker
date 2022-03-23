@@ -16,8 +16,8 @@ RUN conda install --yes -c conda-forge nomkl cytoolz cmake mamba python=${PYTHON
     cytoolz \
     dask==${DASK_VERSION} \
     lz4 \
-    numpy==1.21.1 \
-    pandas==1.3.0 \
+    numpy \
+    pandas \
     tini==0.18.0 \
     cachey \
     streamz \

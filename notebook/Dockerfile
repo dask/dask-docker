@@ -32,8 +32,8 @@ RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
     cytoolz \
     dask==${DASK_VERSION} \
     lz4 \
-    numpy==1.21.1 \
-    pandas==1.3.0 \
+    numpy \
+    pandas \
     ipywidgets \
     cachey \
     streamz \
