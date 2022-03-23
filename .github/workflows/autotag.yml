@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: butlerlogic/action-autotag@1.1.2
+      - uses: butlerlogic/action-autotag@stable
         if: github.repository == 'dask/dask-docker'
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           strategy: regex
           regex_pattern: '\s*\[?.*release\]?: "?.*(\d{4}\.\d{1,2}\.\d+).*"?'
+          root: ".github/workflows/build.yml"
