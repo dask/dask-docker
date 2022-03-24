@@ -2,16 +2,11 @@
 
 set -x
 
-if [ $UID -eq 0 ]; then
-    # We start by adding extra apt packages, since pip modules may require system dependencies
-    if [ "$EXTRA_APT_PACKAGES" ]; then
-	echo "EXTRA_APT_PACKAGES environment variable found.  Installing."
-	apt update -y
-	apt install -y $EXTRA_APT_PACKAGES
-    fi
-    # Start the script over again, this time as a non-root user.
-    exec sudo -E --user "$NB_USER" PATH="$PATH" "$0" -- "$@"
-    exit # Don't continue execution if the exec fails.
+# We start by adding extra apt packages, since pip modules may require system dependencies
+if [ "$EXTRA_APT_PACKAGES" ]; then
+    echo "EXTRA_APT_PACKAGES environment variable found.  Installing."
+    sudo apt-get update -y
+    sudo apt-get install -y $EXTRA_APT_PACKAGES
 fi
 
 if [ -e "/opt/app/environment.yml" ]; then
