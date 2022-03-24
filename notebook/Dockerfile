@@ -10,6 +10,8 @@ USER root
 ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
+RUN echo "jovyan ALL = NOPASSWD : /usr/bin/apt-get , /usr/bin/apt" >> /etc/sudoers
+
 RUN apt-get update \
     && apt-get install -yq --no-install-recommends curl graphviz git \
     && apt-get clean \
@@ -62,5 +64,7 @@ RUN mkdir /opt/app \
 # in the `--chown` statement, so we need to hardcode these values.
 COPY --chown=1000:100 examples/ /home/$NB_USER/examples
 COPY prepare.sh /usr/bin/prepare.sh
+
+USER $NB_USER
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
