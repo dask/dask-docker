@@ -68,11 +68,13 @@ jobs:
           image: ${{ matrix.image.tag }}
           python: ${{ matrix.python }}
         run: |
-          tags="${image}:${release}-py${python}"
+          tag="${image}:${release}-py${python}"
+          tags=$tag
           if [ "$python" == "$defaultpython" ]; then
             tags=${image}:latest,${image}:${release},$tags
           fi
           echo "::set-output name=tags::${tags}"
+          echo "::set-output name=tag::${tag}"
 
       - name: Checkout upstream Jupyter Lab image repo
         uses: actions/checkout@v2
@@ -94,15 +96,6 @@ jobs:
           build-args: |
             PYTHON_VERSION=${{ matrix.python }}
 
-      - name: Validate Jupyter Lab image
-        if: contains(matrix.image.tag, 'dask-notebook')
-        env:
-          image: ${{ matrix.image.tag }}
-          python: ${{ matrix.python }}
-        run: |
-          # Binder
-          canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/binder.yaml ${image}:${release}-py${python}
-
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -114,6 +107,15 @@ jobs:
             python=${{ matrix.python }}
             release=${{ env.release }}
             base=daskdev
+
+      - name: Validate Jupyter Lab image
+        if: contains(matrix.image.tag, 'dask-notebook')
+        env:
+          image: ${{ matrix.image.tag }}
+          python: ${{ matrix.python }}
+        run: |
+          # Binder
+          canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/binder.yaml ${{ steps.tags.outputs.tag }}
 
       - name: Report
         run: echo Built ${{ steps.tags.outputs.tags }}
