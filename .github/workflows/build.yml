@@ -108,14 +108,13 @@ jobs:
             release=${{ env.release }}
             base=daskdev
 
-      - name: Validate Jupyter Lab image
+      - name: Validate Jupyter Lab image for Binder
         if: contains(matrix.image.tag, 'dask-notebook')
-        env:
-          image: ${{ matrix.image.tag }}
-          python: ${{ matrix.python }}
-        run: |
-          # Binder
-          canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/binder.yaml ${{ steps.tags.outputs.tag }}
+        run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/binder.yaml ${{ steps.tags.outputs.tag }}
+
+      - name: Validate Jupyter Lab image for Kubeflow
+        if: contains(matrix.image.tag, 'dask-notebook')
+        run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/kubeflow.yaml ${{ steps.tags.outputs.tag }}
 
       - name: Report
         run: echo Built ${{ steps.tags.outputs.tags }}
