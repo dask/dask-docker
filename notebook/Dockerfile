@@ -27,9 +27,9 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 
 USER $NB_USER
 
-RUN conda install mamba -n base -c conda-forge --yes
-RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
-    && mamba install --yes \
+RUN mamba install -y \
+    python=${PYTHON_VERSION} \
+    nomkl \
     python-blosc \
     cytoolz \
     dask==${DASK_VERSION} \
@@ -39,8 +39,9 @@ RUN mamba install --yes python=${PYTHON_VERSION} nomkl \
     ipywidgets \
     cachey \
     streamz \
-    dask-labextension>=5 \
-    && mamba clean -tipsy \
+    dask-labextension>=5
+
+RUN mamba clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
     && npm cache clean --force \
