@@ -6,14 +6,19 @@ on:
       - main
 
 jobs:
-  build:
+  autotag:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: butlerlogic/action-autotag@stable
-        if: github.repository == 'dask/dask-docker'
+      - name: Parse current build.yml for release version
+        id: yaml
+        uses: the-coding-turtle/ga-yaml-parser@v0.1.1
         with:
-          GITHUB_TOKEN: "${{ secrets.DASK_BOT_TOKEN }}"
-          strategy: regex
-          regex_pattern: '\s*\[?.*release\]?: "?.*(\d{4}\.\d{1,2}\.\d+).*"?'
-          root: ".github/workflows/build.yml"
+          file: .github/workflows/build.yml
+          key: jobs_docker_env_release
+      - name: Create or update release tag
+        uses: rickstaa/action-create-tag@v1.2.2
+        with:
+          tag: ${{ steps.yaml.outputs.result }}
+          message: Version ${{ steps.yaml.outputs.result }}
+          force_push_tag: true
