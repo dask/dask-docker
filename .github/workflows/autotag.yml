@@ -7,6 +7,7 @@ on:
 
 jobs:
   autotag:
+    if: github.repository == 'dask/dask-docker'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
