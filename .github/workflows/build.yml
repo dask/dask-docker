@@ -5,7 +5,7 @@ on:
     branches:
       - main
     tags:
-      - '*'
+      - "*"
   pull_request:
 
 jobs:
@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      release: "2022.4.1"
+      release: "2022.5.0"
       defaultpython: "3.8"
 
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.8", "3.9"]
+        python: ["3.8", "3.9", "3.10"]
         image:
           - tag: "daskdev/dask"
             context: "./base"
