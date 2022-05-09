@@ -22,9 +22,8 @@ RUN mamba install -y \
     pandas \
     tini==0.18.0 \
     cachey \
-    streamz
-
-RUN mamba clean -tipsy \
+    streamz \
+    && mamba clean -tipsy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \

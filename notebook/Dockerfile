@@ -39,9 +39,8 @@ RUN mamba install -y \
     ipywidgets \
     cachey \
     streamz \
-    "dask-labextension>=5"
-
-RUN mamba clean -tipsy \
+    "dask-labextension>=5" \
+    && mamba clean -tipsy \
     && jupyter lab clean \
     && jlpm cache clean \
     && npm cache clean --force \
