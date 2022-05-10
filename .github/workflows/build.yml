@@ -78,7 +78,7 @@ jobs:
               tags=${image}:latest,${image}:${release},$tags
             fi
           else
-            tag="${image}:dev-${python}"
+            tag="${image}:dev-py${python}"
             tags=$tag
             if [ "$python" == "$defaultpython" ]; then
               tags=${image}:dev,$tags
