@@ -47,6 +47,12 @@ The following environment variables are supported for both the base and notebook
 
 * `$EXTRA_APT_PACKAGES` - Space separated list of additional system packages to install with apt.
 * `$EXTRA_CONDA_PACKAGES` - Space separated list of additional packages to install with conda.
+This variable can also be used to specify custom conda channels; for example, to install the latest Dask conda nightly packages:
+
+```bash
+docker run -e EXTRA_CONDA_PACKAGES="-c dask/label/dev dask" daskdev/dask:latest
+```
+
 * `$EXTRA_PIP_PACKAGES` - Space separated list of additional python packages to install with pip.
 * `$USE_MAMBA` - Boolean controlling whether to use conda or mamba to install `$EXTRA_CONDA_PACKAGES`.
 
