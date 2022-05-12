@@ -16,11 +16,6 @@ else
     CONDA_BIN="/opt/conda/bin/conda"
 fi
 
-if [ "$NIGHTLY_DASK" == "true" ]; then
-    echo "NIGHTLY_DASK enabled. Installing latest Dask nightly conda packages."
-    $CONDA_BIN update -c dask/label/dev -y dask
-fi
-
 if [ -e "/opt/app/environment.yml" ]; then
     echo "environment.yml found. Installing packages"
     $CONDA_BIN env update -f /opt/app/environment.yml
