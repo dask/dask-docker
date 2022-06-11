@@ -40,7 +40,7 @@ RUN mamba install -y \
     cachey \
     streamz \
     "dask-labextension>=5" \
-    && mamba clean -tipsy \
+    && mamba clean -tipy \
     && jupyter lab clean \
     && jlpm cache clean \
     && npm cache clean --force \
