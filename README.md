@@ -68,6 +68,10 @@ Docker compose provides an easy way to building all the images with the right co
 ```bash
 cd build
 
+# Use legacy builder as buildkit still doesn't support subdirectories when building from git repos
+export DOCKER_BUILDKIT=0
+export COMPOSE_DOCKER_CLI_BUILD=0
+
 docker-compose build
 
 # Just build one image e.g. notebook
