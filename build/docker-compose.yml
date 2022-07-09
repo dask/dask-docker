@@ -16,7 +16,7 @@ services:
 
   base-notebook:
     build:
-      context: github.com/jupyter/docker-stacks.git#master:base-notebook
+      context: github.com/jupyter/docker-stacks.git#main:base-notebook
       dockerfile: Dockerfile
       args:
         PYTHON_VERSION: "3.8"
