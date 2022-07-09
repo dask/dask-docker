@@ -93,7 +93,7 @@ jobs:
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
           repository: jupyter/docker-stacks
-          ref: master
+          ref: main
           path: docker-stacks
 
       - name: Build upstream Jupyter Lab image
