@@ -8,13 +8,13 @@
 | `ghcr.io/dask/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![][daskdev-dask-notebook-py38-release] ![][daskdev-dask-notebook-release] ![][daskdev-dask-notebook-latest] <br /> ![][daskdev-dask-notebook-py39-release]](https://github.com/dask/dask-docker/pkgs/container/dask-notebook) |
 
 [daskdev-dask-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-latest-blue
-[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.8.1-blue
-[daskdev-dask-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.8.1--py3.8-blue
-[daskdev-dask-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.8.1--py3.9-blue
+[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.9.0-blue
+[daskdev-dask-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.9.0--py3.8-blue
+[daskdev-dask-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.9.0--py3.9-blue
 [daskdev-dask-notebook-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-latest-blue
-[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.8.1-blue
-[daskdev-dask-notebook-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.8.1--py3.8-blue
-[daskdev-dask-notebook-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.8.1--py3.9-blue
+[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.9.0-blue
+[daskdev-dask-notebook-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.9.0--py3.8-blue
+[daskdev-dask-notebook-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.9.0--py3.9-blue
 
 
 ## Example
