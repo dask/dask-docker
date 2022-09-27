@@ -73,7 +73,7 @@ jobs:
         run: |
           if [ "$stable" == "true" ]; then
             tag="${image}:${release}-py${python}"
-            tags=$tag
+            tags=${image}:latest-py${python},$tag
             if [ "$python" == "$defaultpython" ]; then
               tags=${image}:latest,${image}:${release},$tags
             fi
