@@ -14,12 +14,15 @@ jobs:
 
     env:
       release: "2022.10.1"
-      defaultpython: "3.9"
+      defaultpython: "3.8"
 
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.8", "3.9", "3.10"]
+        # Temporarily dropping Python 3.8 as a workaround for
+        # https://github.com/jupyter/docker-stacks/issues/1810
+        # python: ["3.8", "3.9", "3.10"]
+        python: ["3.9", "3.10"]
         image:
           - tag: "daskdev/dask"
             context: "./base"
@@ -93,9 +96,7 @@ jobs:
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
           repository: jupyter/docker-stacks
-          # Pinning to this specific commit because the current `main`
-          # branch runs into https://github.com/jupyter/docker-stacks/issues/1810
-          ref: a061d10bc9c2b87728a83aace5f116108ee00be9
+          ref: main
           path: docker-stacks
 
       - name: Build upstream Jupyter Lab image
