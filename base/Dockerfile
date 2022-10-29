@@ -10,7 +10,6 @@ ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
-RUN mamba update -y mamba
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     nomkl \
