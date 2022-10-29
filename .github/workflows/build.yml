@@ -93,7 +93,9 @@ jobs:
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
           repository: jupyter/docker-stacks
-          ref: main
+          # Pinning to this specific commit because the current `main`
+          # branch runs into https://github.com/jupyter/docker-stacks/issues/1810
+          ref: a061d10bc9c2b87728a83aace5f116108ee00be9
           path: docker-stacks
 
       - name: Build upstream Jupyter Lab image

@@ -27,7 +27,6 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 
 USER $NB_USER
 
-RUN mamba update -y mamba
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     nomkl \
