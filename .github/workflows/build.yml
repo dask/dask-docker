@@ -14,7 +14,7 @@ jobs:
 
     env:
       release: "2022.10.1"
-      defaultpython: "3.8"
+      defaultpython: "3.9"
 
     strategy:
       fail-fast: false
