@@ -17,7 +17,7 @@ jobs:
         id: current_version
         uses: the-coding-turtle/ga-yaml-parser@v0.1.2
         with:
-          file: .github/workflows/build.yaml
+          file: .github/workflows/build.yml
           key: jobs_docker_env_release
 
       - name: Get latest Dask version
