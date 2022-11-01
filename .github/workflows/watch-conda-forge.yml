@@ -3,7 +3,6 @@ name: Check for new versions of Dask on Conda Forge
 on:
   schedule:
     - cron: "0 * * * *"
-  pull_request:
 
 jobs:
   check-version:
@@ -34,7 +33,6 @@ jobs:
           regex: false
 
       - name: Create Pull Request
-        if: github.event_name == 'push'
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.DASK_BOT_TOKEN }}
