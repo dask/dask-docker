@@ -18,7 +18,6 @@ jobs:
         uses: the-coding-turtle/ga-yaml-parser@v0.1.2
         with:
           file: .github/workflows/build.yml
-          key: jobs_docker_env_release
 
       - name: Get latest Dask version
         id: latest_version
@@ -30,7 +29,7 @@ jobs:
       - name: Find and Replace Release
         uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          find: ${{ steps.current_version.outputs.result }}
+          find: ${{ steps.current_version.outputs.jobs_docker_env_release }}
           replace: ${{ steps.latest_version.outputs.version }}
           regex: false
 
