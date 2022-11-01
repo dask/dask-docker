@@ -3,6 +3,7 @@ name: Check for new versions of Dask on Conda Forge
 on:
   schedule:
     - cron: "0 * * * *"
+  pull_request:
 
 jobs:
   check-version:
@@ -12,21 +13,29 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get current Dask version
+        id: current_version
+        uses: the-coding-turtle/ga-yaml-parser@v0.1.2
+        with:
+          file: .github/workflows/build.yaml
+          key: jobs_docker_env_release
+
       - name: Get latest Dask version
         id: latest_version
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
+        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
         with:
           org: "conda-forge"
           package: "dask"
 
       - name: Find and Replace Release
-        uses: jacobtomlinson/gha-find-replace@0.1.1
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          include: 'README\.md|\.github\/workflows\/build\.yml|build\/docker-compose\.yml'
-          find: "release: .*"
-          replace: 'release: "${{ steps.latest_version.outputs.version }}"'
+          find: ${{ steps.current_version.outputs.result }}
+          replace: ${{ steps.latest_version.outputs.version }}
+          regex: false
 
       - name: Create Pull Request
+        if: github.event_name == "push"
         uses: peter-evans/create-pull-request@v3
         with:
           token: ${{ secrets.DASK_BOT_TOKEN }}
