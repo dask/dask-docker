@@ -96,13 +96,6 @@ jobs:
           ref: main
           path: docker-stacks
 
-      # FIXME: remove once jupyter/docker-stacks#1810 is resolved
-      - name: Patch upstream Jupyter Lab image repo
-        if: contains(matrix.image.tag, 'dask-notebook')
-        run: |
-          cd docker-stacks
-          git apply ../notebook/fix-upstream-jupyter.patch
-
       - name: Build upstream Jupyter Lab image
         uses: docker/build-push-action@v2
         if: contains(matrix.image.tag, 'dask-notebook')
