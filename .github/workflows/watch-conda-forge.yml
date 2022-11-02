@@ -12,19 +12,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Get current Dask version
+        id: current_version
+        uses: the-coding-turtle/ga-yaml-parser@v0.1.2
+        with:
+          file: .github/workflows/build.yml
+
       - name: Get latest Dask version
         id: latest_version
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.1
+        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
         with:
           org: "conda-forge"
           package: "dask"
 
       - name: Find and Replace Release
-        uses: jacobtomlinson/gha-find-replace@0.1.1
+        uses: jacobtomlinson/gha-find-replace@2.0.0
         with:
-          include: 'README\.md|\.github\/workflows\/build\.yml|build\/docker-compose\.yml'
-          find: "release: .*"
-          replace: 'release: "${{ steps.latest_version.outputs.version }}"'
+          find: ${{ steps.current_version.outputs.jobs_docker_env_release }}
+          replace: ${{ steps.latest_version.outputs.version }}
+          regex: false
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3
