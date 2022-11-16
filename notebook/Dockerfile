@@ -53,6 +53,8 @@ RUN mamba install -y \
     && (find /opt/conda/lib/python*/site-packages/bokeh/server/static -type f,l -name '*.js' -not -name '*.min.js' -delete || echo "no bokeh static files to cleanup") \
     && rm -rf /opt/conda/pkgs
 
+EXPOSE 8888
+
 USER root
 
 # Create the /opt/app directory, and assert that Jupyter's NB_UID/NB_GID values
