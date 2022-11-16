@@ -1,6 +1,6 @@
 ARG base
 
-FROM $base/base-notebook:lab
+FROM $base/docker-stacks-foundation:lab
 
 ARG release
 ARG python

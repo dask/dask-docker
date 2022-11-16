@@ -14,13 +14,13 @@ services:
       - "8787:8787"
     command: ["dask-scheduler"]
 
-  base-notebook:
+  docker-stacks-foundation:
     build:
-      context: github.com/jupyter/docker-stacks.git#main:base-notebook
+      context: github.com/jupyter/docker-stacks.git#main:docker-stacks-foundation
       dockerfile: Dockerfile
       args:
         PYTHON_VERSION: "3.8"
-    image: daskdev/base-notebook:lab
+    image: daskdev/docker-stacks-foundation:lab
 
   worker:
     build:
@@ -42,7 +42,7 @@ services:
         python: "3.8"
         release: "2022.11.0"
     depends_on:
-      - base-notebook
+      - docker-stacks-foundation
     image: ghcr.io/dask/dask-notebook:latest
     hostname: notebook
     ports:
