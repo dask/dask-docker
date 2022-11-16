@@ -39,6 +39,9 @@ RUN mamba install -y \
     ipywidgets \
     cachey \
     streamz \
+    notebook \
+    jupyterhub \
+    jupyterlab \
     "dask-labextension>=5" \
     && mamba clean -tipy \
     && jupyter lab clean \
