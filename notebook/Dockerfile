@@ -39,14 +39,10 @@ RUN mamba install -y \
     ipywidgets \
     cachey \
     streamz \
-    notebook \
-    jupyterhub \
     jupyterlab \
     "dask-labextension>=5" \
     && mamba clean -tipy \
     && jupyter lab clean \
-    && jlpm cache clean \
-    && npm cache clean --force \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
     && find /opt/conda/ -type f,l -name '*.js.map' -delete \
@@ -55,7 +51,15 @@ RUN mamba install -y \
 
 EXPOSE 8888
 
+# jupyter server config pulled from upstream `base-notebook`
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/main/base-notebook/jupyter_server_config.py /etc/jupyter/jupyter_server_config.py
+
 USER root
+
+# legacy jupyter notebook server support pulled from upstream `base-notebook`
+RUN sed -re "s/c.ServerApp/c.NotebookApp/g" \
+    /etc/jupyter/jupyter_server_config.py > /etc/jupyter/jupyter_notebook_config.py && \
+    fix-permissions /etc/jupyter/
 
 # Create the /opt/app directory, and assert that Jupyter's NB_UID/NB_GID values
 # haven't changed.
@@ -69,6 +73,11 @@ RUN mkdir /opt/app \
 # in the `--chown` statement, so we need to hardcode these values.
 COPY --chown=1000:100 examples/ /home/$NB_USER/examples
 COPY prepare.sh /usr/bin/prepare.sh
+
+# HEALTHCHECK pulled from upstream `base-notebook`
+HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
+    CMD wget -O- --no-verbose --tries=1 --no-check-certificate \
+    http${GEN_CERT:+s}://localhost:8888${JUPYTERHUB_SERVICE_PREFIX:-/}api || exit 1
 
 USER $NB_USER
 
