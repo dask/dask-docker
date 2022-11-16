@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      release: "2022.10.2"
+      release: "2022.11.0"
       defaultpython: "3.8"
 
     strategy:
@@ -100,11 +100,11 @@ jobs:
         uses: docker/build-push-action@v2
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
-          context: ./docker-stacks/base-notebook
+          context: ./docker-stacks/docker-stacks-foundation
           push: false
           load: true
           platforms: linux/amd64
-          tags: daskdev/base-notebook:lab
+          tags: daskdev/docker-stacks-foundation:lab
           build-args: |
             PYTHON_VERSION=${{ matrix.python }}
 

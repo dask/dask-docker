@@ -8,13 +8,13 @@
 | `ghcr.io/dask/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![][daskdev-dask-notebook-py38-release] ![][daskdev-dask-notebook-release] ![][daskdev-dask-notebook-latest] <br /> ![][daskdev-dask-notebook-py39-release]](https://github.com/dask/dask-docker/pkgs/container/dask-notebook) |
 
 [daskdev-dask-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-latest-blue
-[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.10.2-blue
-[daskdev-dask-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.10.2--py3.8-blue
-[daskdev-dask-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.10.2--py3.9-blue
+[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.11.0-blue
+[daskdev-dask-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.11.0--py3.8-blue
+[daskdev-dask-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2022.11.0--py3.9-blue
 [daskdev-dask-notebook-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-latest-blue
-[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.10.2-blue
-[daskdev-dask-notebook-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.10.2--py3.8-blue
-[daskdev-dask-notebook-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.10.2--py3.9-blue
+[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.11.0-blue
+[daskdev-dask-notebook-py38-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.11.0--py3.8-blue
+[daskdev-dask-notebook-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2022.11.0--py3.9-blue
 
 
 ## Example
@@ -80,19 +80,19 @@ docker-compose build notebook
 
 ### Cross building
 
-The images can be cross-built using `docker buildx bake`. However buildx bake does not listen to `depends_on` (since in theory that is only a runtime not a build time constraint https://github.com/docker/buildx/issues/447). To work around this we first need to build the "base-notebook" image.
+The images can be cross-built using `docker buildx bake`. However buildx bake does not listen to `depends_on` (since in theory that is only a runtime not a build time constraint https://github.com/docker/buildx/issues/447). To work around this we first need to build the "docker-stacks-foundation" image.
 
 ```bash
 cd build
 
 # If you have permission to push to daskdev/
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push base-notebook
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push docker-stacks-foundation
 docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --push
 
 # If you don'tset DOCKERUSER to your dockerhub username.
 export DOCKERUSER=holdenk
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set base-notebook.tags.image=${DOCKERUSER}/base-notebook:lab-py38 --push base-notebook
-docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask-notebook --set base-notebook.tags=${DOCKERUSER}/base-notebook:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set docker-stacks-foundation.tags.image=${DOCKERUSER}/docker-stacks-foundation:lab-py38 --push docker-stacks-foundation
+docker buildx bake --progress=plain --set *.platform=linux/arm64,linux/amd64 --set scheduler.tags=${DOCKERUSER}/dask --set worker.tags=${DOCKERUSER}/dask --set notebook.tags=${DOCKERUSER}/dask-notebook --set docker-stacks-foundation.tags=${DOCKERUSER}/docker-stacks-foundation:lab-py38 --set notebook.args.base=${DOCKERUSER} --push
 ```
 
 ## Releasing
