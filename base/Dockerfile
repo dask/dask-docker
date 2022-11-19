@@ -11,16 +11,11 @@ ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
 RUN mamba install -y \
+    "mamba>=0.27.0" \
     python=${PYTHON_VERSION} \
     nomkl \
     cmake \
-    python-blosc \
-    cytoolz \
-    dask==${DASK_VERSION} \
-    lz4 \
-    numpy \
-    pandas \
-    tini==0.18.0 \
+    dask=${DASK_VERSION} \
     cachey \
     streamz \
     && mamba clean -tipy \
