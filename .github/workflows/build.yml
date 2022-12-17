@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      release: "2022.12.0"
+      release: "2022.12.1"
       defaultpython: "3.8"
 
     strategy:
