@@ -45,7 +45,7 @@ jobs:
       - name: Install Container Canary
         run: |
           LATEST_RELEASE=$(curl --retry 6 --retry-delay 10 -s https://api.github.com/repos/NVIDIA/container-canary/releases/latest | jq -r ".assets[] | select(.name | test(\"canary_linux_amd64$\")) | .browser_download_url")
-          curl -sSL $LATEST_RELEASE > /usr/local/bin/canary
+          curl --retry 6 --retry-delay 10 -sSL $LATEST_RELEASE > /usr/local/bin/canary
           chmod +x /usr/local/bin/canary
           canary version
 
