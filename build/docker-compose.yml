@@ -12,14 +12,14 @@ services:
     ports:
       - "8786:8786"
       - "8787:8787"
-    command: ["dask-scheduler"]
+    command: [ "dask-scheduler" ]
 
   docker-stacks-foundation:
     build:
       context: github.com/jupyter/docker-stacks.git#main:docker-stacks-foundation
       dockerfile: Dockerfile
       args:
-        PYTHON_VERSION: "3.8"
+        PYTHON_VERSION: "3.10"
     image: daskdev/docker-stacks-foundation:lab
 
   worker:
@@ -27,11 +27,11 @@ services:
       context: ../base
       dockerfile: Dockerfile
       args:
-        python: "3.8"
+        python: "3.10"
         release: "2023.5.0"
     image: ghcr.io/dask/dask:latest
     hostname: dask-worker
-    command: ["dask-worker", "tcp://scheduler:8786"]
+    command: [ "dask-worker", "tcp://scheduler:8786" ]
 
   notebook:
     build:
@@ -39,7 +39,7 @@ services:
       dockerfile: Dockerfile
       args:
         base: daskdev
-        python: "3.8"
+        python: "3.10"
         release: "2023.5.0"
     depends_on:
       - docker-stacks-foundation

@@ -14,12 +14,12 @@ jobs:
 
     env:
       release: "2023.5.0"
-      defaultpython: "3.8"
+      defaultpython: "3.10"
 
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.8", "3.9", "3.10", "3.11"]
+        python: ["3.9", "3.10", "3.11"]
         image:
           - tag: "daskdev/dask"
             context: "./base"
