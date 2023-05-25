@@ -1,7 +1,7 @@
 ARG BASE_CONTAINER=condaforge/mambaforge:latest
 FROM $BASE_CONTAINER
 
-ARG python=3.8
+ARG python="3.10"
 ARG release
 
 SHELL ["/bin/bash", "-c"]
