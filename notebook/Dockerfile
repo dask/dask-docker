@@ -52,7 +52,7 @@ RUN mamba install -y \
 EXPOSE 8888
 
 # jupyter server config pulled from upstream `base-notebook`
-ADD https://raw.githubusercontent.com/jupyter/docker-stacks/main/base-notebook/jupyter_server_config.py /etc/jupyter/jupyter_server_config.py
+ADD https://raw.githubusercontent.com/jupyter/docker-stacks/main/images/base-notebook/jupyter_server_config.py /etc/jupyter/jupyter_server_config.py
 
 USER root
 
