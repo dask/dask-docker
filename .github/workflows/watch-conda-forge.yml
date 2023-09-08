@@ -1,6 +1,7 @@
 name: Check for new versions of Dask on Conda Forge
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 * * * *"
 
