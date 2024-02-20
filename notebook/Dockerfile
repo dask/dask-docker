@@ -30,7 +30,6 @@ USER $NB_USER
 RUN mamba install -y \
     python=${PYTHON_VERSION} \
     nomkl \
-    python-blosc \
     cytoolz \
     dask==${DASK_VERSION} \
     lz4 \
