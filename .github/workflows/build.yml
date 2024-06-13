@@ -85,8 +85,8 @@ jobs:
             fi
           fi
 
-          echo "::set-output name=tags::${tags}"
-          echo "::set-output name=tag::${tag}"
+          echo "tags=${tags}" >> $GITHUB_OUTPUT
+          echo "tag=${tag}" >> $GITHUB_OUTPUT
 
       - name: Checkout upstream Jupyter Lab image repo
         uses: actions/checkout@v2
