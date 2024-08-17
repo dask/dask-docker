@@ -9,12 +9,10 @@
 
 [daskdev-dask-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-latest-blue
 [daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2024.8.1-blue
-[daskdev-dask-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2024.8.1--py3.9-blue
 [daskdev-dask-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2024.8.1--py3.10-blue
 [daskdev-dask-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2024.8.1--py3.11-blue
 [daskdev-dask-notebook-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-latest-blue
 [daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2024.8.1-blue
-[daskdev-dask-notebook-py39-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2024.8.1--py3.9-blue
 [daskdev-dask-notebook-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2024.8.1--py3.10-blue
 [daskdev-dask-notebook-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2024.8.1--py3.11-blue
 
