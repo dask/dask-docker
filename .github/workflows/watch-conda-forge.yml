@@ -21,7 +21,7 @@ jobs:
 
       - name: Get latest Dask version
         id: latest_version
-        uses: jacobtomlinson/gha-anaconda-package-version@0.1.3
+        uses: jacobtomlinson/gha-anaconda-package-version@0.1.4
         with:
           org: "conda-forge"
           package: "dask"
