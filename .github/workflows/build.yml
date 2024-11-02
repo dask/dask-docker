@@ -16,20 +16,6 @@ jobs:
       release: "2024.9.1"
       defaultpython: "3.10"
 
-    strategy:
-      fail-fast: false
-      matrix:
-        python: ["3.10", "3.11", "3.12"]
-        image:
-          - tag: "daskdev/dask"
-            context: "./base"
-          - tag: "ghcr.io/dask/dask"
-            context: "./base"
-          - tag: "daskdev/dask-notebook"
-            context: "./notebook"
-          - tag: "ghcr.io/dask/dask-notebook"
-            context: "./notebook"
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -42,83 +28,39 @@ jobs:
         with:
           driver: docker
 
-      - name: Install Container Canary
-        run: |
-          LATEST_RELEASE=$(curl --retry 6 --retry-delay 10 -s https://api.github.com/repos/NVIDIA/container-canary/releases/latest | jq -r ".assets[] | select(.name | test(\"canary_linux_amd64$\")) | .browser_download_url")
-          curl --retry 6 --retry-delay 10 -sSL $LATEST_RELEASE > /usr/local/bin/canary
-          chmod +x /usr/local/bin/canary
-          canary version
+      #- name: Install Container Canary
+      #  run: |
+      #    LATEST_RELEASE=$(curl --retry 6 --retry-delay 10 -s https://api.github.com/repos/NVIDIA/container-canary/releases/latest | jq -r ".assets[] | select(.name | test(\"canary_linux_amd64$\")) | .browser_download_url")
+      #    curl --retry 6 --retry-delay 10 -sSL $LATEST_RELEASE > /usr/local/bin/canary
+      #    chmod +x /usr/local/bin/canary
+      #    canary version
 
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      #- name: Login to DockerHub
+      #  uses: docker/login-action@v1
+      #  if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
+      #  with:
+      #    username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #    password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v1
-        if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
+      #  if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate tags
-        id: tags
-        env:
-          image: ${{ matrix.image.tag }}
-          python: ${{ matrix.python }}
-          stable: ${{ startsWith(github.ref, 'refs/tags') }}
-        run: |
-          if [ "$stable" == "true" ]; then
-            tag="${image}:${release}-py${python}"
-            tags=${image}:latest-py${python},$tag
-            if [ "$python" == "$defaultpython" ]; then
-              tags=${image}:latest,${image}:${release},$tags
-            fi
-          else
-            tag="${image}:dev-py${python}"
-            tags=$tag
-            if [ "$python" == "$defaultpython" ]; then
-              tags=${image}:dev,$tags
-            fi
-          fi
-
-          echo "tags=${tags}" >> $GITHUB_OUTPUT
-          echo "tag=${tag}" >> $GITHUB_OUTPUT
-
-      - name: Checkout upstream Jupyter Lab image repo
-        uses: actions/checkout@v2
-        if: contains(matrix.image.tag, 'dask-notebook')
-        with:
-          repository: jupyter/docker-stacks
-          ref: main
-          path: docker-stacks
-
-      - name: Build upstream Jupyter Lab image
-        uses: docker/build-push-action@v2
-        if: contains(matrix.image.tag, 'dask-notebook')
-        with:
-          context: ./docker-stacks/images/docker-stacks-foundation
-          push: false
-          load: true
-          platforms: linux/amd64
-          tags: daskdev/docker-stacks-foundation:lab
-          build-args: |
-            PYTHON_VERSION=${{ matrix.python }}
-
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/bake-action@v4
         with:
-          context: ${{ matrix.image.context }}
-          push: ${{ github.repository == 'dask/dask-docker' && github.event_name == 'push' }}
-          platforms: linux/amd64
-          tags: ${{ steps.tags.outputs.tags }}
-          build-args: |
-            python=${{ matrix.python }}
-            release=${{ env.release }}
-            base=daskdev
+          push: true
+          targets: dask
+          files: bakefile.hcl
+        env:
+          STABLE: ${{ startsWith(github.ref, 'refs/tags') }}
+          RELEASE: ${{ env.release }}
+          DEFAULT_PY_VERSION: ${{ env.defaultpython }}
+
 
       - name: Validate Jupyter Lab image for Binder
         if: contains(matrix.image.tag, 'dask-notebook')
@@ -128,5 +70,5 @@ jobs:
         if: contains(matrix.image.tag, 'dask-notebook')
         run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/kubeflow.yaml ${{ steps.tags.outputs.tag }}
 
-      - name: Report
-        run: echo Built ${{ steps.tags.outputs.tags }}
+      #- name: Report
+      #  run: echo Built ${{ steps.tags.outputs.tags }}

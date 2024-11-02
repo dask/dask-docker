@@ -1,6 +1,6 @@
 ARG base
 
-FROM $base/docker-stacks-foundation:lab
+FROM $base
 
 ARG release
 ARG python
