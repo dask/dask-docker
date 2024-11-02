@@ -27,19 +27,20 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 
 USER $NB_USER
 
-RUN mamba install -y \
-    python=${PYTHON_VERSION} \
-    nomkl \
-    cytoolz \
-    dask==${DASK_VERSION} \
-    lz4 \
-    numpy \
-    pandas \
-    ipywidgets \
-    cachey \
-    streamz \
-    jupyterlab \
-    "dask-labextension>=5" \
+RUN export G_SLICE=always-malloc \
+    && mamba install -y \
+        python=${PYTHON_VERSION} \
+        nomkl \
+        cytoolz \
+        dask==${DASK_VERSION} \
+        lz4 \
+        numpy \
+        pandas \
+        ipywidgets \
+        cachey \
+        streamz \
+        jupyterlab \
+        "dask-labextension>=5" \
     && mamba clean -tipy \
     && jupyter lab clean \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
