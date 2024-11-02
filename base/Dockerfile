@@ -10,14 +10,15 @@ ENV PATH /opt/conda/bin:$PATH
 ENV PYTHON_VERSION=${python}
 ENV DASK_VERSION=${release}
 
-RUN mamba install -y \
-    "mamba>=0.27.0" \
-    python=${PYTHON_VERSION} \
-    nomkl \
-    cmake \
-    dask=${DASK_VERSION} \
-    cachey \
-    streamz \
+RUN export G_SLICE=always-malloc \
+    && mamba install -y \
+        "mamba>=0.27.0" \
+        python=${PYTHON_VERSION} \
+        nomkl \
+        cmake \
+        dask=${DASK_VERSION} \
+        cachey \
+        streamz \
     && mamba clean -tipy \
     && find /opt/conda/ -type f,l -name '*.a' -delete \
     && find /opt/conda/ -type f,l -name '*.pyc' -delete \
