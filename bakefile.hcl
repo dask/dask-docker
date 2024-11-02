@@ -133,7 +133,7 @@ target "notebook" {
         baseapp = "target:notebook-base-${replace(py_version, ".", "")}"
     }
 
-    name = "dask-${replace(py_version, ".", "")}"
+    name = "dask-notebook-${replace(py_version, ".", "")}"
     tags = tag(
         "dask-notebook",
         RELEASE,
