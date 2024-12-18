@@ -124,9 +124,11 @@ jobs:
         if: contains(matrix.image.tag, 'dask-notebook')
         run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/binder.yaml ${{ steps.tags.outputs.tag }}
 
-      - name: Validate Jupyter Lab image for Kubeflow
-        if: contains(matrix.image.tag, 'dask-notebook')
-        run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/kubeflow.yaml ${{ steps.tags.outputs.tag }}
+      # FIXME: Temporarily remove this broken check
+      # https://github.com/dask/dask-docker/pull/331#pullrequestreview-2422162885
+      # - name: Validate Jupyter Lab image for Kubeflow
+      #   if: contains(matrix.image.tag, 'dask-notebook')
+      #   run: canary validate --file https://github.com/NVIDIA/container-canary/raw/main/examples/kubeflow.yaml ${{ steps.tags.outputs.tag }}
 
       - name: Report
         run: echo Built ${{ steps.tags.outputs.tags }}
