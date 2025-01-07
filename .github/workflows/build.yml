@@ -32,15 +32,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        uses: docker/setup-qemu-action@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+      - name: Set up Docker
+        uses: docker/setup-docker-action@v4
         with:
-          driver: docker
+          daemon-config: |
+            {
+              "debug": true,
+              "features": {
+                "containerd-snapshotter": true
+              }
+            }  
 
       - name: Install Container Canary
         run: |
@@ -50,14 +56,14 @@ jobs:
           canary version
 
       - name: Login to DockerHub
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         if: github.repository == 'dask/dask-docker' && github.event_name == 'push'
         with:
           registry: ghcr.io
@@ -89,7 +95,7 @@ jobs:
           echo "tag=${tag}" >> $GITHUB_OUTPUT
 
       - name: Checkout upstream Jupyter Lab image repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
           repository: jupyter/docker-stacks
@@ -97,23 +103,23 @@ jobs:
           path: docker-stacks
 
       - name: Build upstream Jupyter Lab image
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         if: contains(matrix.image.tag, 'dask-notebook')
         with:
           context: ./docker-stacks/images/docker-stacks-foundation
           push: false
           load: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: daskdev/docker-stacks-foundation:lab
           build-args: |
             PYTHON_VERSION=${{ matrix.python }}
 
       - name: Build and push
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           context: ${{ matrix.image.context }}
           push: ${{ github.repository == 'dask/dask-docker' && github.event_name == 'push' }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: ${{ steps.tags.outputs.tags }}
           build-args: |
             python=${{ matrix.python }}
