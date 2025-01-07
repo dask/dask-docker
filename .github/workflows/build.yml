@@ -103,7 +103,7 @@ jobs:
           context: ./docker-stacks/images/docker-stacks-foundation
           push: false
           load: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: daskdev/docker-stacks-foundation:lab
           build-args: |
             PYTHON_VERSION=${{ matrix.python }}
@@ -113,7 +113,7 @@ jobs:
         with:
           context: ${{ matrix.image.context }}
           push: ${{ github.repository == 'dask/dask-docker' && github.event_name == 'push' }}
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: ${{ steps.tags.outputs.tags }}
           build-args: |
             python=${{ matrix.python }}
