@@ -81,4 +81,4 @@ HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
 USER $NB_USER
 
 ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
-CMD ["jupyter", "lab", '--NotebookApp.base_url="${NB_PREFIX:-/}"', "--NotebookApp.allow_origin='*'", '${JUPYTERLAB_ARGS}']
+CMD ["jupyter", "lab", '--NotebookApp.base_url="${NB_PREFIX:-/}"', '--NotebookApp.allow_origin="*"', '${JUPYTERLAB_ARGS}']
