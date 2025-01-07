@@ -71,7 +71,8 @@ RUN mkdir /opt/app \
 # Copy over the example as NB_USER. Unfortuantely we can't use $NB_UID/$NB_GID
 # in the `--chown` statement, so we need to hardcode these values.
 COPY --chown=1000:100 examples/ /home/$NB_USER/examples
-COPY prepare.sh /usr/bin/prepare.sh
+COPY prepare.sh /usr/local/bin/before-notebook.d/
+COPY run.sh /run.sh
 
 # HEALTHCHECK pulled from upstream `base-notebook`
 HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
@@ -80,5 +81,5 @@ HEALTHCHECK  --interval=15s --timeout=3s --start-period=5s --retries=3 \
 
 USER $NB_USER
 
-ENTRYPOINT ["tini", "--", "/usr/bin/prepare.sh"]
-CMD ["jupyter", "lab", '--NotebookApp.base_url="${NB_PREFIX:-/}"', '--NotebookApp.allow_origin="*"', '${JUPYTERLAB_ARGS}']
+# CMD ["jupyter", "lab", '--NotebookApp.base_url="${NB_PREFIX:-/}"', '--NotebookApp.allow_origin="*"', '${JUPYTERLAB_ARGS}']
+CMD '/run.sh'
