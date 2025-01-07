@@ -4,8 +4,8 @@
 
 | Image  | Description | Versions |
 | ------------- | ------------- | ------------- |
-| `ghcr.io/dask/dask`  | Base image to use for Dask scheduler and workers  |   [![][daskdev-dask-py310-release] ![][daskdev-dask-release] ![][daskdev-dask-latest] <br /> ![][daskdev-dask-py39-release] <br /> ![][daskdev-dask-py311-release]](https://github.com/dask/dask-docker/pkgs/container/dask)  |
-| `ghcr.io/dask/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![][daskdev-dask-notebook-py310-release] ![][daskdev-dask-notebook-release] ![][daskdev-dask-notebook-latest] <br /> ![][daskdev-dask-notebook-py39-release] <br /> ![][daskdev-dask-notebook-py311-release]](https://github.com/dask/dask-docker/pkgs/container/dask-notebook) |
+| `ghcr.io/dask/dask`  | Base image to use for Dask scheduler and workers  |   [![][daskdev-dask-py310-release] ![][daskdev-dask-release] ![][daskdev-dask-latest] <br /> ![][daskdev-dask-py310-release] <br /> ![][daskdev-dask-py311-release]](https://github.com/dask/dask-docker/pkgs/container/dask)  |
+| `ghcr.io/dask/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![][daskdev-dask-notebook-py310-release] ![][daskdev-dask-notebook-release] ![][daskdev-dask-notebook-latest] <br /> ![][daskdev-dask-notebook-py310-release] <br /> ![][daskdev-dask-notebook-py311-release]](https://github.com/dask/dask-docker/pkgs/container/dask-notebook) |
 
 [daskdev-dask-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-latest-blue
 [daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2024.12.1-blue
