@@ -16,7 +16,7 @@ services:
 
   docker-stacks-foundation:
     build:
-      context: github.com/jupyter/docker-stacks.git#main:docker-stacks-foundation
+      context: github.com/jupyter/docker-stacks.git#main:images/docker-stacks-foundation
       dockerfile: Dockerfile
       args:
         PYTHON_VERSION: "3.10"
