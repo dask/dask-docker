@@ -27,7 +27,8 @@ RUN MAGICARCH=$(dpkg --print-architecture) && \
 
 USER $NB_USER
 
-RUN mamba install -y \
+RUN export G_SLICE=always-malloc \
+    && mamba install -y \
     python=${PYTHON_VERSION} \
     nomkl \
     cytoolz \
