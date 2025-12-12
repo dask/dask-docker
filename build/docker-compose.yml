@@ -6,7 +6,7 @@ services:
       context: ../base
       dockerfile: Dockerfile
       args:
-        release: "2025.11.0"
+        release: "2025.12.0"
     image: ghcr.io/dask/dask:latest
     hostname: dask-scheduler
     ports:
@@ -28,7 +28,7 @@ services:
       dockerfile: Dockerfile
       args:
         python: "3.10"
-        release: "2025.11.0"
+        release: "2025.12.0"
     image: ghcr.io/dask/dask:latest
     hostname: dask-worker
     command: [ "dask-worker", "tcp://scheduler:8786" ]
@@ -40,7 +40,7 @@ services:
       args:
         base: daskdev
         python: "3.10"
-        release: "2025.11.0"
+        release: "2025.12.0"
     depends_on:
       - docker-stacks-foundation
     image: ghcr.io/dask/dask-notebook:latest
