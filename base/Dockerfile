@@ -1,4 +1,4 @@
-ARG BASE_CONTAINER=condaforge/mambaforge:23.3.1-1
+ARG BASE_CONTAINER=condaforge/miniforge3:25.11.0-0
 FROM $BASE_CONTAINER
 
 ARG python="3.10"
