@@ -8,19 +8,19 @@
 | `ghcr.io/dask/dask-notebook`  | Jupyter Notebook image to use as helper entrypoint  | [![][daskdev-dask-notebook-py310-release] ![][daskdev-dask-notebook-release] ![][daskdev-dask-notebook-latest] <br /> ![][daskdev-dask-notebook-py310-release] <br /> ![][daskdev-dask-notebook-py311-release] <br /> ![][daskdev-dask-notebook-py312-release] <br /> ![][daskdev-dask-notebook-py313-release] <br /> ![][daskdev-dask-notebook-py314-release]](https://github.com/dask/dask-docker/pkgs/container/dask-notebook) |
 
 [daskdev-dask-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-latest-blue
-[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0-blue
-[daskdev-dask-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0--py3.10-blue
-[daskdev-dask-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0--py3.11-blue
-[daskdev-dask-py312-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0--py3.12-blue
-[daskdev-dask-py313-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0--py3.13-blue
-[daskdev-dask-py314-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.0--py3.14-blue
+[daskdev-dask-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1-blue
+[daskdev-dask-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1--py3.10-blue
+[daskdev-dask-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1--py3.11-blue
+[daskdev-dask-py312-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1--py3.12-blue
+[daskdev-dask-py313-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1--py3.13-blue
+[daskdev-dask-py314-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask-2026.7.1--py3.14-blue
 [daskdev-dask-notebook-latest]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-latest-blue
-[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0-blue
-[daskdev-dask-notebook-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0--py3.10-blue
-[daskdev-dask-notebook-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0--py3.11-blue
-[daskdev-dask-notebook-py312-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0--py3.12-blue
-[daskdev-dask-notebook-py313-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0--py3.13-blue
-[daskdev-dask-notebook-py314-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.0--py3.14-blue
+[daskdev-dask-notebook-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1-blue
+[daskdev-dask-notebook-py310-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1--py3.10-blue
+[daskdev-dask-notebook-py311-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1--py3.11-blue
+[daskdev-dask-notebook-py312-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1--py3.12-blue
+[daskdev-dask-notebook-py313-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1--py3.13-blue
+[daskdev-dask-notebook-py314-release]: https://img.shields.io/badge/ghcr.io%2Fdask%2Fdask--notebook-2026.7.1--py3.14-blue
 
 
 ## Example
