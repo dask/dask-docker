@@ -19,7 +19,7 @@ RUN apt-get update \
 
 # We don't use TARGETARCH so as to support non-buildkit builds
 RUN MAGICARCH=$(dpkg --print-architecture) && \
-    curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/${MAGICARCH}/kubectl" && \
+    curl -LO "https://dl.k8s.io/release/$(curl -Ls https://dl.k8s.io/release/stable.txt)/bin/linux/${MAGICARCH}/kubectl" && \
     mkdir -p /usr/local/bin && \
     mv ./kubectl /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl && \
